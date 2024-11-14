@@ -4,10 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "AbilitySystemInterface.h"
 #include "GBaseCharacter.generated.h"
 
+class UGAbilitySystemComponent;
+
 UCLASS()
-class GAS_API AGBaseCharacter : public ACharacter
+class GAS_API AGBaseCharacter : public ACharacter, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
@@ -23,4 +26,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+
+public:
+	UPROPERTY(VisibleAnywhere, Category="Ability|Properties")
+	UGAbilitySystemComponent* AbilitySystemComp;
 };

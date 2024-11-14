@@ -3,6 +3,8 @@
 
 #include "Character/GBaseCharacter.h"
 
+#include "Components/GAbilitySystemComponent.h"
+
 // Sets default values
 AGBaseCharacter::AGBaseCharacter()
 {
@@ -23,5 +25,10 @@ void AGBaseCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+UAbilitySystemComponent* AGBaseCharacter::GetAbilitySystemComponent() const
+{
+	return CastChecked<UGAbilitySystemComponent>(AbilitySystemComp);
 }
 
