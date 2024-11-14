@@ -10,5 +10,19 @@
 AGPlayerState::AGPlayerState()
 {
 	AbilitySystemComponent = CreateDefaultSubobject<UGAbilitySystemComponent>("AbilitySystemComponent");
+	AbilitySystemComponent->SetIsReplicated(true);
 	AttributeSet = CreateDefaultSubobject<UGAttributeSet>("AttributeSet");
+	SetReplicates(true);
+	NetUpdateFrequency = 60.0f;
+}
+
+UAbilitySystemComponent* AGPlayerState::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
+}
+
+void AGPlayerState::BeginPlay()
+{
+	Super::BeginPlay();
+	// AbilitySystemComponent->InitAbilityActorInfo(this, GetPawn());
 }

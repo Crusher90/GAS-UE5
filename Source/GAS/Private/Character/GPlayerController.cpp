@@ -4,6 +4,7 @@
 #include "Character/GPlayerController.h"
 #include "EnhancedInputComponent.h"
 #include "Character/GCharacter.h"
+#include "EnhancedInputSubsystems.h"
 
 void AGPlayerController::SetupInputComponent()
 {
@@ -24,6 +25,11 @@ void AGPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 	MyCharacter = CastChecked<AGCharacter>(GetPawn());
+	if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
+		ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(this->GetLocalPlayer()))
+	{
+		Subsystem->AddMappingContext(MappingContext, 0);
+	}
 }
 
 void AGPlayerController::Move(const FInputActionValue& InputActionValue)
@@ -47,8 +53,8 @@ void AGPlayerController::Look(const FInputActionValue& InputActionValue)
 	const FVector2D LookVector = InputActionValue.Get<FVector2D>();
 	if(MyCharacter)
 	{
-		MyCharacter->AddControllerYawInput( LookVector.X * GetWorld()->GetDeltaSeconds());
-		MyCharacter->AddControllerPitchInput(LookVector.Y * GetWorld()->GetDeltaSeconds());
+		MyCharacter->AddControllerYawInput( GameSensitivity * LookVector.X * GetWorld()->GetDeltaSeconds());
+		MyCharacter->AddControllerPitchInput(GameSensitivity * LookVector.Y * GetWorld()->GetDeltaSeconds());
 	}
 }
 

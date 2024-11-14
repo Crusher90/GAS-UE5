@@ -6,6 +6,9 @@
 #include "GBaseCharacter.h"
 #include "GCharacter.generated.h"
 
+class USpringArmComponent;
+class UCameraComponent;
+
 UCLASS()
 class GAS_API AGCharacter : public AGBaseCharacter
 {
@@ -22,4 +25,15 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	
+	virtual void OnRep_PlayerState() override;
+
+	virtual void PossessedBy(AController* NewController) override;
+
+private:
+	UPROPERTY(VisibleAnywhere, Category="Properties|Camera")
+	USpringArmComponent* SpringArm;
+
+	UPROPERTY(VisibleAnywhere, Category="Properties|Camera")
+	UCameraComponent* Camera;
 };
