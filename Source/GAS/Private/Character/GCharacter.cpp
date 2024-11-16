@@ -6,6 +6,7 @@
 #include "Camera/CameraComponent.h"
 #include "Character/GPlayerState.h"
 #include "Components/GAbilitySystemComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 
 
@@ -26,6 +27,9 @@ AGCharacter::AGCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
+
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 360.f, 0.f);
+	GetCharacterMovement()->bOrientRotationToMovement = true;
 }
 
 // Called when the game starts or when spawned
