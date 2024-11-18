@@ -24,5 +24,4 @@ UAbilitySystemComponent* AGPlayerState::GetAbilitySystemComponent() const
 void AGPlayerState::BeginPlay()
 {
 	Super::BeginPlay();
-	// AbilitySystemComponent->InitAbilityActorInfo(this, GetPawn());
 }

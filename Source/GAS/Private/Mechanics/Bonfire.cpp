@@ -87,6 +87,9 @@ void ABonfire::OnOverlapBox(UPrimitiveComponent* OverlappedComponent, AActor* Ot
 	}
 }
 
+/**
+ * @todo remove gameplay effect with the use of tags.
+ */
 void ABonfire::OnEndOverlapCapsule(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
@@ -102,6 +105,9 @@ void ABonfire::OnEndOverlapCapsule(UPrimitiveComponent* OverlappedComponent, AAc
 	}
 }
 
+/**
+ * @todo remove gameplay effect with the use of tags.
+ */
 void ABonfire::OnEndOverlapBox(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {

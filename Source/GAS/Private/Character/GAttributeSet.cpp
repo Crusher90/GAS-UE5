@@ -10,6 +10,10 @@ void UGAttributeSet::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>&
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME_CONDITION_NOTIFY(ThisClass, Health, COND_None, REPNOTIFY_Always)
 	DOREPLIFETIME_CONDITION_NOTIFY(ThisClass, MaxHealth, COND_None, REPNOTIFY_Always)
+	DOREPLIFETIME_CONDITION_NOTIFY(ThisClass, Mana, COND_None, REPNOTIFY_Always)
+	DOREPLIFETIME_CONDITION_NOTIFY(ThisClass, MaxMana, COND_None, REPNOTIFY_Always)
+	DOREPLIFETIME_CONDITION_NOTIFY(ThisClass, Stamina, COND_None, REPNOTIFY_Always)
+	DOREPLIFETIME_CONDITION_NOTIFY(ThisClass, MaxStamina, COND_None, REPNOTIFY_Always)
 }
 
 void UGAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealth) const
@@ -20,4 +24,34 @@ void UGAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealth) const
 void UGAttributeSet::OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHealth) const
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(ThisClass, MaxHealth, OldMaxHealth);
+}
+
+void UGAttributeSet::OnRep_Mana(const FGameplayAttributeData& OldMana) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(ThisClass, Mana, OldMana);
+}
+
+void UGAttributeSet::OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(ThisClass, MaxMana, OldMaxMana);
+}
+
+void UGAttributeSet::OnRep_Stamina(const FGameplayAttributeData& OldStamina) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(ThisClass, Stamina, OldStamina);
+}
+
+void UGAttributeSet::OnRep_MaxStamina(const FGameplayAttributeData& OldMaxStamina) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(ThisClass, MaxStamina, OldMaxStamina);
+}
+
+void UGAttributeSet::OnRep_Experience(const FGameplayAttributeData& OldExperience) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(ThisClass, Experience, OldExperience);
+}
+
+void UGAttributeSet::OnRep_MaxExperience(const FGameplayAttributeData& OldMaxExperience) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(ThisClass, MaxExperience, OldMaxExperience);
 }

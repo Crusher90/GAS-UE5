@@ -3,9 +3,60 @@
 
 #include "UI/GGameOverlay.h"
 
+#include "Character/GAttributeSet.h"
+#include "Components/GAbilitySystemComponent.h"
 #include "Components/ProgressBar.h"
 
-void UGGameOverlay::SetHealthBarValue(float ValueToSet)
+void UGGameOverlay::NativeConstruct()
 {
-	PBHealth->SetPercent(ValueToSet);
+	Super::NativeConstruct();
+	if(ASComp)
+	{
+		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetHealthAttribute()).AddUObject(this, &ThisClass::HealthChanged);
+		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetHealthAttribute()).AddUObject(this, &ThisClass::MaxHealthChanged);
+		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetHealthAttribute()).AddUObject(this, &ThisClass::ManaChanged);
+		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetHealthAttribute()).AddUObject(this, &ThisClass::MaxManaChanged);
+		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetHealthAttribute()).AddUObject(this, &ThisClass::StaminaChanged);
+		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetHealthAttribute()).AddUObject(this, &ThisClass::MaxStaminaChanged);
+	}
+}
+
+void UGGameOverlay::HealthChanged(const FOnAttributeChangeData& Data)
+{
+	PBHealth->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxHealthAttribute()));
+}
+
+void UGGameOverlay::MaxHealthChanged(const FOnAttributeChangeData& Data)
+{
+	PBHealth->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxHealthAttribute()));
+}
+
+void UGGameOverlay::ManaChanged(const FOnAttributeChangeData& Data)
+{
+	PBMana->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetManaAttribute()));
+}
+
+void UGGameOverlay::MaxManaChanged(const FOnAttributeChangeData& Data)
+{
+	PBMana->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxManaAttribute()));
+}
+
+void UGGameOverlay::StaminaChanged(const FOnAttributeChangeData& Data)
+{
+	PBStamina->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetStaminaAttribute()));
+}
+
+void UGGameOverlay::MaxStaminaChanged(const FOnAttributeChangeData& Data)
+{
+	PBStamina->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxStaminaAttribute()));
+}
+
+void UGGameOverlay::ExperienceChanged(const FOnAttributeChangeData& Data)
+{
+	PBExperience->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetExperienceAttribute()));
+}
+
+void UGGameOverlay::MaxExperienceChanged(const FOnAttributeChangeData& Data)
+{
+	PBExperience->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxExperienceAttribute()));
 }

@@ -18,9 +18,11 @@ protected:
 
 public:
 	UPROPERTY(VisibleAnywhere, Category="UI|Widgets")
+	UUserWidget* GUserWidget;
+
+	UPROPERTY(VisibleAnywhere, Category="UI|Widgets")
 	UUserWidget* GameOverlay;
 	
 	UPROPERTY(EditAnywhere, Category="UI|Widgets")
 	TSubclassOf<UUserWidget> GameOverlayClass;
-	
 };

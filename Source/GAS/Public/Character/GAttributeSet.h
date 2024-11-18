@@ -36,4 +36,40 @@ public:
 	ATTRIBUTE_ACCESSORS(UGAttributeSet, MaxHealth);
 	UFUNCTION()
 	void OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHealth) const;
+
+	UPROPERTY(VisibleAnywhere, ReplicatedUsing="OnRep_Mana", Category="Attributes|Data")
+	FGameplayAttributeData Mana;
+	ATTRIBUTE_ACCESSORS(UGAttributeSet, Mana);
+	UFUNCTION()
+	void OnRep_Mana(const FGameplayAttributeData& OldMana) const;
+	
+	UPROPERTY(VisibleAnywhere, ReplicatedUsing="OnRep_MaxMana", Category="Attributes|Data")
+	FGameplayAttributeData MaxMana;
+	ATTRIBUTE_ACCESSORS(UGAttributeSet, MaxMana);
+	UFUNCTION()
+	void OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) const;
+
+	UPROPERTY(VisibleAnywhere, ReplicatedUsing="OnRep_Stamina", Category="Attributes|Data")
+	FGameplayAttributeData Stamina;
+	ATTRIBUTE_ACCESSORS(UGAttributeSet, Stamina);
+	UFUNCTION()
+	void OnRep_Stamina(const FGameplayAttributeData& OldStamina) const;
+	
+	UPROPERTY(VisibleAnywhere, ReplicatedUsing="OnRep_MaxStamina", Category="Attributes|Data")
+	FGameplayAttributeData MaxStamina;
+	ATTRIBUTE_ACCESSORS(UGAttributeSet, MaxStamina);
+	UFUNCTION()
+	void OnRep_MaxStamina(const FGameplayAttributeData& OldMaxStamina) const;
+
+	UPROPERTY(VisibleAnywhere, ReplicatedUsing="OnRep_Experience", Category="Attributes|Data")
+	FGameplayAttributeData Experience;
+	ATTRIBUTE_ACCESSORS(UGAttributeSet, Experience);
+	UFUNCTION()
+	void OnRep_Experience(const FGameplayAttributeData& OldExperience) const;
+
+	UPROPERTY(VisibleAnywhere, ReplicatedUsing="OnRep_MaxExperience", Category="Attributes|Data")
+	FGameplayAttributeData MaxExperience;
+	ATTRIBUTE_ACCESSORS(UGAttributeSet, MaxExperience);
+	UFUNCTION()
+	void OnRep_MaxExperience(const FGameplayAttributeData& OldMaxExperience) const;
 };
