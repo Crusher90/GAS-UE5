@@ -13,5 +13,12 @@ UCLASS()
 class GAS_API UGAbilitySystemComponent : public UAbilitySystemComponent
 {
 	GENERATED_BODY()
+
+protected:
+	virtual void BeginPlay() override;
+
+private:
+	UPROPERTY(EditAnywhere, Category="ASC|Abilities")
+	TSubclassOf<UGameplayAbility> FireballAbility;
 	
 };
