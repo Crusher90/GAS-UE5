@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "GPlayerController.generated.h"
 
+class AGCharacter;
 class UInputMappingContext;
 struct FInputActionValue;
 class UInputAction;
@@ -52,9 +53,8 @@ protected:
 	
 public:
 	UPROPERTY(VisibleAnywhere, Category="Player")
-	ACharacter* MyCharacter;
+	AGCharacter* MyCharacter;
 
 	UPROPERTY(EditAnywhere, Category="Player")
 	float GameSensitivity = 45.f;
-	
 };

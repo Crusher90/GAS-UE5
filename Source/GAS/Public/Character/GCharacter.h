@@ -36,4 +36,10 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category="Properties|Camera")
 	UCameraComponent* Camera;
+	
+public:
+	UPROPERTY(EditAnywhere, Category="Properties|Montage")
+	UAnimMontage* AttackMontage;
+	
+	void PlayMontage(UAnimMontage* MontageToPlay) const;
 };

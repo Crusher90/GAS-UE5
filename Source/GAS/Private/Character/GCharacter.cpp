@@ -64,4 +64,13 @@ void AGCharacter::PossessedBy(AController* NewController)
 	}
 }
 
+void AGCharacter::PlayMontage(UAnimMontage* MontageToPlay) const
+{
+	if(UAnimInstance* AnimIns = GetMesh()->GetAnimInstance())
+	{
+		AnimIns->Montage_Play(MontageToPlay);
+		AnimIns->Montage_JumpToSection(FName("Attack1"), MontageToPlay);
+	}
+}
+
 

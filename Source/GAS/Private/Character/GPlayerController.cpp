@@ -84,4 +84,5 @@ void AGPlayerController::StopSprint(const FInputActionValue& InputActionValue)
 
 void AGPlayerController::Attack(const FInputActionValue& InputActionValue)
 {
+	MyCharacter->PlayMontage(MyCharacter->AttackMontage);
 }
