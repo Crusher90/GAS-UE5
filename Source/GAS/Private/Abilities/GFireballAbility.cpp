@@ -8,7 +8,7 @@ void UGFireballAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 	const FGameplayEventData* TriggerEventData)
 {
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString("UGFireballAbility::ActivateAbility"));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString("UGFireballAbility::ActivateAbilityFireballAbility"));
 }
 
 void UGFireballAbility::PreActivate(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo,
@@ -16,5 +16,5 @@ void UGFireballAbility::PreActivate(const FGameplayAbilitySpecHandle Handle, con
 	FOnGameplayAbilityEnded::FDelegate* OnGameplayAbilityEndedDelegate, const FGameplayEventData* TriggerEventData)
 {
 	Super::PreActivate(Handle, ActorInfo, ActivationInfo, OnGameplayAbilityEndedDelegate, TriggerEventData);
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Emerald, FString("UGFireballAbility::PreActivate"));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Emerald, FString("UGFireballAbility::PreActivateFireballAbility"));
 }

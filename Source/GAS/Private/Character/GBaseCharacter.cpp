@@ -31,6 +31,9 @@ UAbilitySystemComponent* AGBaseCharacter::GetAbilitySystemComponent() const
 
 void AGBaseCharacter::GiveStartupAbilities()
 {
+	/*
+	 *	Startup abilities array is filled with abilities, to activate it we require their index number
+	 */
 	check(AbilitySystemComp);
 	if(!HasAuthority()) return;
 	for(const auto StartAbility : StartupAbilities)
