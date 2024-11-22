@@ -4,13 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "Abilities/GameplayAbility.h"
-#include "GFireballAbility.generated.h"
+#include "GAttackAbility.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class GAS_API UGFireballAbility : public UGameplayAbility
+class GAS_API UGAttackAbility : public UGameplayAbility
 {
 	GENERATED_BODY()
 

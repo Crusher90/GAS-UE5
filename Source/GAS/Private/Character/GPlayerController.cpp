@@ -3,7 +3,6 @@
 
 #include "Character/GPlayerController.h"
 
-#include "AbilitySystemComponent.h"
 #include "EnhancedInputComponent.h"
 #include "Character/GCharacter.h"
 #include "EnhancedInputSubsystems.h"
@@ -20,6 +19,8 @@ void AGPlayerController::SetupInputComponent()
 		InputComp->BindAction(AttackAction, ETriggerEvent::Triggered, this, &ThisClass::Attack);
 		InputComp->BindAction(SprintAction, ETriggerEvent::Triggered, this, &ThisClass::Sprint);
 		InputComp->BindAction(SprintAction, ETriggerEvent::Completed, this, &ThisClass::StopSprint);
+		InputComp->BindAction(DodgeAction, ETriggerEvent::Triggered, this, &ThisClass::Dodge);
+		InputComp->BindAction(UltimateAction, ETriggerEvent::Triggered, this, &ThisClass::Ultimate);
 	}
 }
 
@@ -60,7 +61,7 @@ void AGPlayerController::Look(const FInputActionValue& InputActionValue)
 	}
 }
 
-void AGPlayerController::Jump(const FInputActionValue& InputActionValue)
+void AGPlayerController::Jump()
 {
 	if(MyCharacter)
 	{
@@ -68,7 +69,7 @@ void AGPlayerController::Jump(const FInputActionValue& InputActionValue)
 	}
 }
 
-void AGPlayerController::StopJump(const FInputActionValue& InputActionValue)
+void AGPlayerController::StopJump()
 {
 	if(MyCharacter)
 	{
@@ -76,15 +77,24 @@ void AGPlayerController::StopJump(const FInputActionValue& InputActionValue)
 	}
 }
 
-void AGPlayerController::Sprint(const FInputActionValue& InputActionValue)
+void AGPlayerController::Sprint()
 {
 }
 
-void AGPlayerController::StopSprint(const FInputActionValue& InputActionValue)
+void AGPlayerController::StopSprint()
 {
 }
 
-void AGPlayerController::Attack(const FInputActionValue& InputActionValue)
+void AGPlayerController::Attack()
 {
 	MyCharacter->PlayMontage(MyCharacter->AttackMontage);
+}
+
+void AGPlayerController::Dodge()
+{
+}
+
+void AGPlayerController::Ultimate()
+{
+	//fireball ability
 }

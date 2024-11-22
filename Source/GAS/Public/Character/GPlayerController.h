@@ -42,14 +42,22 @@ private:
 	UPROPERTY(EditAnywhere, Category="Player|Inputs")
 	UInputAction* SprintAction;
 
+	UPROPERTY(EditAnywhere, Category="Player|Inputs")
+	UInputAction* DodgeAction;
+
+	UPROPERTY(EditAnywhere, Category="Player|Inputs")
+	UInputAction* UltimateAction;
+
 protected:
 	void Move(const FInputActionValue& InputActionValue);
 	void Look(const FInputActionValue& InputActionValue);
-	void Jump(const FInputActionValue& InputActionValue);
-	void StopJump(const FInputActionValue& InputActionValue);
-	void Sprint(const FInputActionValue& InputActionValue);
-	void StopSprint(const FInputActionValue& InputActionValue);
-	void Attack(const FInputActionValue& InputActionValue);
+	void Jump();		
+	void StopJump();
+	void Sprint();			// consume stamina
+	void StopSprint();
+	void Attack();			// build up mana on successful hits to enemy
+	void Dodge();			// consume stamina
+	void Ultimate();		// consume mana
 	
 public:
 	UPROPERTY(VisibleAnywhere, Category="Player")
