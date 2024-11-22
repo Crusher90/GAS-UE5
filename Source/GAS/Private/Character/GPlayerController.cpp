@@ -3,6 +3,7 @@
 
 #include "Character/GPlayerController.h"
 
+#include "AbilitySystemComponent.h"
 #include "EnhancedInputComponent.h"
 #include "Character/GCharacter.h"
 #include "EnhancedInputSubsystems.h"

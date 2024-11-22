@@ -51,6 +51,7 @@ void AGCharacter::OnRep_PlayerState()
 	{
 		AbilitySystemComp = CastChecked<UGAbilitySystemComponent>(PS->GetAbilitySystemComponent());
 		AbilitySystemComp->InitAbilityActorInfo(PS, this);
+		InitDefaultAttributes();
 	}
 }
 
@@ -61,6 +62,11 @@ void AGCharacter::PossessedBy(AController* NewController)
 	{
 		AbilitySystemComp = CastChecked<UGAbilitySystemComponent>(PS->GetAbilitySystemComponent());
 		AbilitySystemComp->InitAbilityActorInfo(PS, this);
+		GiveStartupAbilities();
+		if(StartupGameplayEffect)
+		{
+			InitDefaultAttributes();
+		}
 	}
 }
 

@@ -16,18 +16,35 @@ AGBaseCharacter::AGBaseCharacter(): AbilitySystemComp(nullptr)
 void AGBaseCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
 void AGBaseCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 UAbilitySystemComponent* AGBaseCharacter::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComp;
+}
+
+void AGBaseCharacter::GiveStartupAbilities()
+{
+	check(AbilitySystemComp);
+	if(!HasAuthority()) return;
+	for(const auto StartAbility : StartupAbilities)
+	{
+		FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(StartAbility, 1);
+		AbilitySystemComp->GiveAbility(AbilitySpec);
+	}
+}
+
+void AGBaseCharacter::InitDefaultAttributes()
+{
+	const FGameplayEffectContextHandle ContextHandle = AbilitySystemComp->MakeEffectContext();
+	const FGameplayEffectSpecHandle SpecHandle = AbilitySystemComp->MakeOutgoingSpec(StartupGameplayEffect, 1.f,
+		ContextHandle);
+	AbilitySystemComp->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
 }
 

@@ -3,10 +3,15 @@
 
 #include "Components/GAbilitySystemComponent.h"
 
+UGAbilitySystemComponent::UGAbilitySystemComponent()
+{
+	SetIsReplicated(true);
+}
+
 void UGAbilitySystemComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	const FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(FireballAbility, 1);
-	const FGameplayAbilitySpecHandle AbilitySpecHandle = GiveAbility(AbilitySpec);
-	TryActivateAbility(AbilitySpecHandle);
+	// const FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(FireballAbility, 1);
+	// const FGameplayAbilitySpecHandle AbilitySpecHandle = GiveAbility(AbilitySpec);
+	// TryActivateAbility(AbilitySpecHandle);
 }

@@ -10,7 +10,7 @@
 AGPlayerState::AGPlayerState()
 {
 	AbilitySystemComponent = CreateDefaultSubobject<UGAbilitySystemComponent>("AbilitySystemComponent");
-	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
 	AttributeSet = CreateDefaultSubobject<UGAttributeSet>("AttributeSet");
 	SetReplicates(true);
 	NetUpdateFrequency = 60.0f;

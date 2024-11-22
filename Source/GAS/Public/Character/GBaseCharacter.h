@@ -7,6 +7,8 @@
 #include "AbilitySystemInterface.h"
 #include "GBaseCharacter.generated.h"
 
+class UGameplayEffect;
+class UGameplayAbility;
 class UGAbilitySystemComponent;
 
 UCLASS()
@@ -28,7 +30,17 @@ public:
 
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
+	void GiveStartupAbilities();
+
+	void InitDefaultAttributes();
+
 public:
 	UPROPERTY(VisibleAnywhere, Category="Ability|Properties")
 	UGAbilitySystemComponent* AbilitySystemComp;
+
+	UPROPERTY(EditAnywhere, Category="Ability|StartupAbilities")
+	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
+
+	UPROPERTY(EditAnywhere, Category="Ability|StartupEffect")
+	TSubclassOf<UGameplayEffect> StartupGameplayEffect;
 };
