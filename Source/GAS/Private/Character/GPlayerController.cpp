@@ -7,8 +7,6 @@
 #include "EnhancedInputComponent.h"
 #include "Character/GCharacter.h"
 #include "EnhancedInputSubsystems.h"
-#include "Abilities/GAttackAbility.h"
-#include "Components/GAbilitySystemComponent.h"
 
 void AGPlayerController::SetupInputComponent()
 {
@@ -82,43 +80,24 @@ void AGPlayerController::StopJump()
 
 void AGPlayerController::Sprint()
 {
-	if(TArray<FGameplayAbilitySpec> AbilitySpecs = MyCharacter->AbilitySystemComp->GetActivatableAbilities(); AbilitySpecs.Num() > 0)
-	{
-		MyCharacter->GetAbilitySystemComponent()->TryActivateAbility(AbilitySpecs[3].Handle);
-	}
+	MyCharacter->GetAbilitySystemComponent()->TryActivateAbilityByClass(*MyCharacter->StartupAbilities.Find(FName("SprintAbility")));
 }
 
 void AGPlayerController::StopSprint()
 {
-	// if(TArray<FGameplayAbilitySpec> AbilitySpecs = MyCharacter->AbilitySystemComp->GetActivatableAbilities(); AbilitySpecs.Num() > 0)
-	// {
-	// 	MyCharacter->GetAbilitySystemComponent()->TryActivateAbility(AbilitySpecs[2].Handle);
-	// }
 }
 
 void AGPlayerController::Attack()
 {
-	/*
-	 *	Startup abilities array is filled with abilities, to activate it we require their index number
-	 */
-	if(TArray<FGameplayAbilitySpec> AbilitySpecs = MyCharacter->AbilitySystemComp->GetActivatableAbilities(); AbilitySpecs.Num() > 0)
-	{
-		MyCharacter->GetAbilitySystemComponent()->TryActivateAbility(AbilitySpecs[1].Handle);
-	}
+	MyCharacter->GetAbilitySystemComponent()->TryActivateAbilityByClass(*MyCharacter->StartupAbilities.Find(FName("AttackAbility")));
 }
 
 void AGPlayerController::Dodge()
 {
-	if(TArray<FGameplayAbilitySpec> AbilitySpecs = MyCharacter->AbilitySystemComp->GetActivatableAbilities(); AbilitySpecs.Num() > 0)
-	{
-		MyCharacter->GetAbilitySystemComponent()->TryActivateAbility(AbilitySpecs[2].Handle);
-	}
+	MyCharacter->GetAbilitySystemComponent()->TryActivateAbilityByClass(*MyCharacter->StartupAbilities.Find(FName("DodgeAbility")));
 }
 
 void AGPlayerController::Ultimate()
 {
-	if(TArray<FGameplayAbilitySpec> AbilitySpecs = MyCharacter->AbilitySystemComp->GetActivatableAbilities(); AbilitySpecs.Num() > 0)
-	{
-		MyCharacter->GetAbilitySystemComponent()->TryActivateAbility(AbilitySpecs[0].Handle);
-	}
+	MyCharacter->GetAbilitySystemComponent()->TryActivateAbilityByClass(*MyCharacter->StartupAbilities.Find(FName("UltimateAbility")));
 }

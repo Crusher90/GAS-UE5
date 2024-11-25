@@ -32,15 +32,15 @@ public:
 
 	void GiveStartupAbilities();
 
-	void InitDefaultAttributes();
+	void InitDefaultAttributes() const;
 
 public:
 	UPROPERTY(VisibleAnywhere, Category="Ability|Properties")
 	UGAbilitySystemComponent* AbilitySystemComp;
 
-	UPROPERTY(EditAnywhere, Category="Ability|StartupAbilities")
-	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
+	UPROPERTY(EditDefaultsOnly, Category="Ability|StartupAbilities")
+	TMap<FName, TSubclassOf<UGameplayAbility>> StartupAbilities;
 
-	UPROPERTY(EditAnywhere, Category="Ability|StartupEffect")
-	TSubclassOf<UGameplayEffect> StartupGameplayEffect;
+	UPROPERTY(EditDefaultsOnly, Category="Ability|StartupEffect")
+	TSubclassOf<UGameplayEffect> InitAttributeGameplayEffect;
 };

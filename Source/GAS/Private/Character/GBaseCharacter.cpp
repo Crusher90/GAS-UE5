@@ -31,22 +31,19 @@ UAbilitySystemComponent* AGBaseCharacter::GetAbilitySystemComponent() const
 
 void AGBaseCharacter::GiveStartupAbilities()
 {
-	/*
-	 *	Startup abilities array is filled with abilities, to activate it we require their index number
-	 */
 	check(AbilitySystemComp);
 	if(!HasAuthority()) return;
 	for(const auto StartAbility : StartupAbilities)
 	{
-		FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(StartAbility, 1);
+		FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(StartAbility.Value, 1);
 		AbilitySystemComp->GiveAbility(AbilitySpec);
 	}
 }
 
-void AGBaseCharacter::InitDefaultAttributes()
+void AGBaseCharacter::InitDefaultAttributes() const
 {
 	const FGameplayEffectContextHandle ContextHandle = AbilitySystemComp->MakeEffectContext();
-	const FGameplayEffectSpecHandle SpecHandle = AbilitySystemComp->MakeOutgoingSpec(StartupGameplayEffect, 1.f,
+	const FGameplayEffectSpecHandle SpecHandle = AbilitySystemComp->MakeOutgoingSpec(InitAttributeGameplayEffect, 1.f,
 		ContextHandle);
 	AbilitySystemComp->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
 }

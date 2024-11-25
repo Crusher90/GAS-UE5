@@ -11,7 +11,4 @@ UGAbilitySystemComponent::UGAbilitySystemComponent()
 void UGAbilitySystemComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	// const FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(FireballAbility, 1);
-	// const FGameplayAbilitySpecHandle AbilitySpecHandle = GiveAbility(AbilitySpec);
-	// TryActivateAbility(AbilitySpecHandle);
 }

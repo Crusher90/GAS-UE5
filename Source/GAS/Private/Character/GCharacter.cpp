@@ -63,7 +63,7 @@ void AGCharacter::PossessedBy(AController* NewController)
 		AbilitySystemComp = CastChecked<UGAbilitySystemComponent>(PS->GetAbilitySystemComponent());
 		AbilitySystemComp->InitAbilityActorInfo(PS, this);
 		GiveStartupAbilities();
-		if(StartupGameplayEffect)
+		if(InitAttributeGameplayEffect)
 		{
 			InitDefaultAttributes();
 		}
@@ -78,5 +78,3 @@ void AGCharacter::PlayMontage(UAnimMontage* MontageToPlay) const
 		AnimIns->Montage_JumpToSection(FName("Attack1"), MontageToPlay);
 	}
 }
-
-
