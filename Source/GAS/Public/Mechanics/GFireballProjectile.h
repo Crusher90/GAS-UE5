@@ -23,10 +23,8 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	
-	UFUNCTION()
-	void OnProjectileOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
-		int OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	void SpawnProjectile(const FTransform& SpawnTransform);
 
 private:
 	UPROPERTY(VisibleAnywhere, Category="Projectile|Collision")
@@ -37,4 +35,22 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category="Projectile|Movement")
 	UProjectileMovementComponent* ProjectileMovement;
+
+	UPROPERTY(VisibleAnywhere, Category="Projectile|Scene")
+	USceneComponent* Location1;
+
+	UPROPERTY(VisibleAnywhere, Category="Projectile|Scene")
+	USceneComponent* Location2;
+
+	UPROPERTY(VisibleAnywhere, Category="Projectile|Scene")
+	USceneComponent* Location3;
+
+	UPROPERTY(VisibleAnywhere, Category="Projectile|Scene")
+	USceneComponent* Location4;
+
+	UPROPERTY(VisibleAnywhere, Category="Projectile|Scene")
+	USceneComponent* Location5;
+
+	UPROPERTY(EditAnywhere, Category="Projectile|Spawn")
+	TSubclassOf<AActor> BurdenProjectileClass;
 };

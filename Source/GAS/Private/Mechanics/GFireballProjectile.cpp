@@ -5,7 +5,7 @@
 
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
-#include "AbilitySystemBlueprintLibrary.h"
+#include "Mechanics/GBurdenProjectile.h"
 #include "Particles/ParticleSystemComponent.h"
 
 
@@ -17,18 +17,28 @@ AGFireballProjectile::AGFireballProjectile()
 
 	SphereComp = CreateDefaultSubobject<USphereComponent>(FName("SphereComp"));
 	SetRootComponent(SphereComp);
-	SphereComp->SetCollisionEnabled(ECollisionEnabled::Type::QueryOnly);
+	SphereComp->SetCollisionEnabled(ECollisionEnabled::Type::NoCollision);
 	SphereComp->SetCollisionResponseToAllChannels(ECR_Ignore);
-	SphereComp->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Overlap);
-	SphereComp->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Overlap);
-	SphereComp->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
+	SphereComp->SetEnableGravity(false);
 
 	ParticleComp = CreateDefaultSubobject<UParticleSystemComponent>(FName("ParticleComp"));
 
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(FName("ProjectileMovement"));
 	ProjectileMovement->bRotationFollowsVelocity = true;
-	ProjectileMovement->InitialSpeed = 1000.f;
-	ProjectileMovement->MaxSpeed = 1000.f;
+	ProjectileMovement->InitialSpeed = 2000.f;
+	ProjectileMovement->MaxSpeed = 2000.f;
+	ProjectileMovement->ProjectileGravityScale = 0.f;
+
+	Location1 = CreateDefaultSubobject<USceneComponent>(FName("Location1"));
+	Location1->SetupAttachment(GetRootComponent());
+	Location2 = CreateDefaultSubobject<USceneComponent>(FName("Location2"));
+	Location2->SetupAttachment(GetRootComponent());
+	Location3 = CreateDefaultSubobject<USceneComponent>(FName("Location3"));
+	Location3->SetupAttachment(GetRootComponent());
+	Location4 = CreateDefaultSubobject<USceneComponent>(FName("Location4"));
+	Location4->SetupAttachment(GetRootComponent());
+	Location5 = CreateDefaultSubobject<USceneComponent>(FName("Location5"));
+	Location5->SetupAttachment(GetRootComponent());
 }
 
 // Called when the game starts or when spawned
@@ -37,21 +47,16 @@ void AGFireballProjectile::BeginPlay()
 	Super::BeginPlay();
 
 	SphereComp->IgnoreActorWhenMoving(GetInstigator(), true);
-	SphereComp->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::OnProjectileOverlap);
-	
+	SetLifeSpan(4.f);
 }
 
-void AGFireballProjectile::OnProjectileOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AGFireballProjectile::SpawnProjectile(const FTransform& SpawnTransform)
 {
-	if(OtherActor)
+	AActor* Projectile = GetWorld()->SpawnActorDeferred<AGBurdenProjectile>(BurdenProjectileClass, SpawnTransform,
+	GetOwner(), GetInstigator(), ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn);
+	if(Projectile)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, FString::Printf(TEXT("otheractor is %s"), *OtherActor->GetName()));
-		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, FString::Printf(TEXT("instigator is %s"), *GetInstigator()->GetName()));
-		// UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(OtherActor)->ApplyGameplayEffectSpecToSelf(); @todo how to apply gameplay effect to enemies.
-		
-		
-		Destroy();
+		Projectile->FinishSpawning(SpawnTransform);
 	}
 }
 
@@ -59,4 +64,9 @@ void AGFireballProjectile::Destroyed()
 {
 	Super::Destroyed();
 	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, "FireballProjectileDestroyed");
+	SpawnProjectile(Location1->GetComponentTransform());
+	SpawnProjectile(Location2->GetComponentTransform());
+	SpawnProjectile(Location3->GetComponentTransform());
+	SpawnProjectile(Location4->GetComponentTransform());
+	SpawnProjectile(Location5->GetComponentTransform());
 }
