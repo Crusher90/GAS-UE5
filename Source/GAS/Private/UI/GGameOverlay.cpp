@@ -13,11 +13,11 @@ void UGGameOverlay::NativeConstruct()
 	if(ASComp)
 	{
 		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetHealthAttribute()).AddUObject(this, &ThisClass::HealthChanged);
-		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetHealthAttribute()).AddUObject(this, &ThisClass::MaxHealthChanged);
-		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetHealthAttribute()).AddUObject(this, &ThisClass::ManaChanged);
-		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetHealthAttribute()).AddUObject(this, &ThisClass::MaxManaChanged);
-		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetHealthAttribute()).AddUObject(this, &ThisClass::StaminaChanged);
-		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetHealthAttribute()).AddUObject(this, &ThisClass::MaxStaminaChanged);
+		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetMaxHealthAttribute()).AddUObject(this, &ThisClass::MaxHealthChanged);
+		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetManaAttribute()).AddUObject(this, &ThisClass::ManaChanged);
+		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetMaxManaAttribute()).AddUObject(this, &ThisClass::MaxManaChanged);
+		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetStaminaAttribute()).AddUObject(this, &ThisClass::StaminaChanged);
+		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetMaxStaminaAttribute()).AddUObject(this, &ThisClass::MaxStaminaChanged);
 	}
 }
 

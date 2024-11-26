@@ -31,4 +31,5 @@ void UGFireballAbility::PreActivate(const FGameplayAbilitySpecHandle Handle, con
 {
 	Super::PreActivate(Handle, ActorInfo, ActivationInfo, OnGameplayAbilityEndedDelegate, TriggerEventData);
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Emerald, FString("UGFireballAbility::PreActivateFireballAbility"));
+	CommitAbility(Handle, ActorInfo, ActivationInfo);
 }
