@@ -9,6 +9,8 @@ void UGAttackAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 {
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString("ActivateAbilityAttackAbility"));
+	
+	// EndAbility(Handle, ActorInfo, ActivationInfo, true, false);
 }
 
 void UGAttackAbility::PreActivate(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo,
@@ -17,4 +19,5 @@ void UGAttackAbility::PreActivate(const FGameplayAbilitySpecHandle Handle, const
 {
 	Super::PreActivate(Handle, ActorInfo, ActivationInfo, OnGameplayAbilityEndedDelegate, TriggerEventData);
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString("ActivateAbilityPreAttackAbility"));
+	CommitAbility(Handle, ActorInfo, ActivationInfo);
 }

@@ -5,6 +5,7 @@
 
 #include "Camera/CameraComponent.h"
 #include "Character/GPlayerState.h"
+#include "Components/BoxComponent.h"
 #include "Components/GAbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -30,12 +31,20 @@ AGCharacter::AGCharacter()
 
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 360.f, 0.f);
 	GetCharacterMovement()->bOrientRotationToMovement = true;
+
+	WeaponBoxCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("WeaponBoxCollision"));
+	WeaponBoxCollision->SetupAttachment(GetMesh(), FName("sword_bottom"));
+	WeaponBoxCollision->SetCollisionEnabled(ECollisionEnabled::Type::NoCollision);
+	WeaponBoxCollision->SetCollisionResponseToAllChannels(ECR_Ignore);
+	WeaponBoxCollision->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
 }
 
 // Called when the game starts or when spawned
 void AGCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	WeaponBoxCollision->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::OnWeaponOverlap);
 }
 
 // Called every frame
@@ -70,11 +79,8 @@ void AGCharacter::PossessedBy(AController* NewController)
 	}
 }
 
-void AGCharacter::PlayMontage(UAnimMontage* MontageToPlay) const
+void AGCharacter::OnWeaponOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if(UAnimInstance* AnimIns = GetMesh()->GetAnimInstance())
-	{
-		AnimIns->Montage_Play(MontageToPlay);
-		AnimIns->Montage_JumpToSection(FName("Attack1"), MontageToPlay);
-	}
+	
 }

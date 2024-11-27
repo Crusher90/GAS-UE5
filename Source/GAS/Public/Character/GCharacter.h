@@ -6,6 +6,7 @@
 #include "GBaseCharacter.h"
 #include "GCharacter.generated.h"
 
+class UBoxComponent;
 class USpringArmComponent;
 class UCameraComponent;
 
@@ -19,6 +20,10 @@ public:
 	AGCharacter();
 
 protected:
+	UFUNCTION()
+	void OnWeaponOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
+		int OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
@@ -37,9 +42,6 @@ private:
 	UPROPERTY(VisibleAnywhere, Category="Properties|Camera")
 	UCameraComponent* Camera;
 	
-public:
-	UPROPERTY(EditAnywhere, Category="Properties|Montage")
-	UAnimMontage* AttackMontage;
-	
-	void PlayMontage(UAnimMontage* MontageToPlay) const;
+	UPROPERTY(VisibleAnywhere, Category="Properties|Weapon")
+	UBoxComponent* WeaponBoxCollision;
 };
