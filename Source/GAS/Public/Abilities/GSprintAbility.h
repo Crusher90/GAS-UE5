@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Abilities/GameplayAbility.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "GSprintAbility.generated.h"
 
 /**
@@ -23,4 +24,8 @@ protected:
 	virtual void PreActivate(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo,
 		const FGameplayAbilityActivationInfo ActivationInfo, FOnGameplayAbilityEnded::FDelegate* OnGameplayAbilityEndedDelegate,
 		const FGameplayEventData* TriggerEventData = nullptr) override;
+
+private:
+	UPROPERTY(EditDefaultsOnly, Category="Ability|Sprint")
+	float SprintSpeed = 600.f;
 };

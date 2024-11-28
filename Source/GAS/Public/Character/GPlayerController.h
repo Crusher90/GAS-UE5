@@ -40,7 +40,10 @@ private:
 	UInputAction* AttackAction;
 	
 	UPROPERTY(EditAnywhere, Category="Player|Inputs")
-	UInputAction* SprintAction;
+	UInputAction* IncreaseSpeedAction;
+
+	UPROPERTY(EditAnywhere, Category="Player|Inputs")
+	UInputAction* DecreaseSpeedAction;
 
 	UPROPERTY(EditAnywhere, Category="Player|Inputs")
 	UInputAction* DodgeAction;
@@ -53,11 +56,11 @@ protected:
 	void Look(const FInputActionValue& InputActionValue);
 	void Jump();		
 	void StopJump();
-	void Sprint();			// consume stamina
-	void StopSprint();
 	void Attack();			// build up mana on successful hits to enemy
 	void Dodge();			// consume stamina
 	void Ultimate();		// consume mana
+	void IncreaseSpeed();
+	void DecreaseSpeed();
 	
 public:
 	UPROPERTY(VisibleAnywhere, Category="Player")

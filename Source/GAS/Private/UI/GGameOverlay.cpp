@@ -33,7 +33,7 @@ void UGGameOverlay::MaxHealthChanged(const FOnAttributeChangeData& Data)
 
 void UGGameOverlay::ManaChanged(const FOnAttributeChangeData& Data)
 {
-	PBMana->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetManaAttribute()));
+	PBMana->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxManaAttribute()));
 }
 
 void UGGameOverlay::MaxManaChanged(const FOnAttributeChangeData& Data)
@@ -43,7 +43,7 @@ void UGGameOverlay::MaxManaChanged(const FOnAttributeChangeData& Data)
 
 void UGGameOverlay::StaminaChanged(const FOnAttributeChangeData& Data)
 {
-	PBStamina->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetStaminaAttribute()));
+	PBStamina->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxStaminaAttribute()));
 }
 
 void UGGameOverlay::MaxStaminaChanged(const FOnAttributeChangeData& Data)
@@ -53,7 +53,7 @@ void UGGameOverlay::MaxStaminaChanged(const FOnAttributeChangeData& Data)
 
 void UGGameOverlay::ExperienceChanged(const FOnAttributeChangeData& Data)
 {
-	PBExperience->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetExperienceAttribute()));
+	PBExperience->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxExperienceAttribute()));
 }
 
 void UGGameOverlay::MaxExperienceChanged(const FOnAttributeChangeData& Data)

@@ -18,8 +18,8 @@ void AGPlayerController::SetupInputComponent()
 		InputComp->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ThisClass::Jump);
 		InputComp->BindAction(JumpAction, ETriggerEvent::Completed, this, &ThisClass::StopJump);
 		InputComp->BindAction(AttackAction, ETriggerEvent::Triggered, this, &ThisClass::Attack);
-		InputComp->BindAction(SprintAction, ETriggerEvent::Triggered, this, &ThisClass::Sprint);
-		InputComp->BindAction(SprintAction, ETriggerEvent::Completed, this, &ThisClass::StopSprint);
+		InputComp->BindAction(IncreaseSpeedAction, ETriggerEvent::Triggered, this, &ThisClass::IncreaseSpeed);
+		InputComp->BindAction(DecreaseSpeedAction, ETriggerEvent::Completed, this, &ThisClass::DecreaseSpeed);
 		InputComp->BindAction(DodgeAction, ETriggerEvent::Triggered, this, &ThisClass::Dodge);
 		InputComp->BindAction(UltimateAction, ETriggerEvent::Triggered, this, &ThisClass::Ultimate);
 	}
@@ -78,15 +78,6 @@ void AGPlayerController::StopJump()
 	}
 }
 
-void AGPlayerController::Sprint()
-{
-	MyCharacter->GetAbilitySystemComponent()->TryActivateAbilityByClass(*MyCharacter->StartupAbilities.Find(FName("SprintAbility")));
-}
-
-void AGPlayerController::StopSprint()
-{
-}
-
 void AGPlayerController::Attack()
 {
 	MyCharacter->GetAbilitySystemComponent()->TryActivateAbilityByClass(*MyCharacter->StartupAbilities.Find(FName("AttackAbility")));
@@ -100,4 +91,17 @@ void AGPlayerController::Dodge()
 void AGPlayerController::Ultimate()
 {
 	MyCharacter->GetAbilitySystemComponent()->TryActivateAbilityByClass(*MyCharacter->StartupAbilities.Find(FName("UltimateAbility")));
+}
+
+void AGPlayerController::IncreaseSpeed()
+{
+	if(MyCharacter->GetVelocity().Size2D() > 0.f)
+	{
+		MyCharacter->GetAbilitySystemComponent()->TryActivateAbilityByClass(*MyCharacter->StartupAbilities.Find(FName("SprintAbility")));
+	}
+}
+
+void AGPlayerController::DecreaseSpeed()
+{
+	MyCharacter->GetAbilitySystemComponent()->TryActivateAbilityByClass(*MyCharacter->StartupAbilities.Find(FName("StopSprintAbility")));
 }

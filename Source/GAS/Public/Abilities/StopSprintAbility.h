@@ -4,13 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "Abilities/GameplayAbility.h"
-#include "GDodgeAbility.generated.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "StopSprintAbility.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class GAS_API UGDodgeAbility : public UGameplayAbility
+class GAS_API UStopSprintAbility : public UGameplayAbility
 {
 	GENERATED_BODY()
 
@@ -24,7 +25,6 @@ protected:
 		const FGameplayAbilityActivationInfo ActivationInfo, FOnGameplayAbilityEnded::FDelegate* OnGameplayAbilityEndedDelegate,
 		const FGameplayEventData* TriggerEventData = nullptr) override;
 
-private:
-	UPROPERTY(EditDefaultsOnly, Category="Ability|Properties")
-	float DodgeDistance = 5.f;
+	UPROPERTY(EditDefaultsOnly, Category="Ability|StopSprint")
+	float StopSprintSpeed = 400.f;
 };
