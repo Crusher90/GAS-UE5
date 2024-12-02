@@ -24,7 +24,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	void SpawnProjectile(const FTransform& SpawnTransform);
+	void SpawnProjectile(const FTransform& SpawnTransform) const;
 
 private:
 	UPROPERTY(VisibleAnywhere, Category="Projectile|Collision")
@@ -53,4 +53,7 @@ private:
 
 	UPROPERTY(EditAnywhere, Category="Projectile|Spawn")
 	TSubclassOf<AActor> BurdenProjectileClass;
+
+	UPROPERTY(EditAnywhere, Category="Projectile|Spawn")
+	UParticleSystem* DestroyParticle;
 };

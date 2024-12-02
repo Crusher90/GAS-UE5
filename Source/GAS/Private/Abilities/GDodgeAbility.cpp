@@ -15,7 +15,8 @@ void UGDodgeAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 
 	if(ACharacter* Character = Cast<ACharacter>(GetAvatarActorFromActorInfo()))
 	{
-		Character->LaunchCharacter(Character->GetVelocity() * DodgeDistance, true, false);
+		const FVector LaunchVelocity = FVector(Character->GetVelocity().X, Character->GetVelocity().Y, 0.f);
+		Character->LaunchCharacter(LaunchVelocity * DodgeDistance, true, false);
 	}
 }
 

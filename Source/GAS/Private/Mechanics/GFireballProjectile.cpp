@@ -5,6 +5,7 @@
 
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "Mechanics/GBurdenProjectile.h"
 #include "Particles/ParticleSystemComponent.h"
 
@@ -50,7 +51,7 @@ void AGFireballProjectile::BeginPlay()
 	SetLifeSpan(4.f);
 }
 
-void AGFireballProjectile::SpawnProjectile(const FTransform& SpawnTransform)
+void AGFireballProjectile::SpawnProjectile(const FTransform& SpawnTransform) const
 {
 	AActor* Projectile = GetWorld()->SpawnActorDeferred<AGBurdenProjectile>(BurdenProjectileClass, SpawnTransform,
 	GetOwner(), GetInstigator(), ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn);
@@ -64,6 +65,7 @@ void AGFireballProjectile::Destroyed()
 {
 	Super::Destroyed();
 	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, "FireballProjectileDestroyed");
+	UGameplayStatics::SpawnEmitterAtLocation(this, DestroyParticle, GetActorLocation(), GetActorRotation());
 	SpawnProjectile(Location1->GetComponentTransform());
 	SpawnProjectile(Location2->GetComponentTransform());
 	SpawnProjectile(Location3->GetComponentTransform());
