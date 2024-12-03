@@ -20,7 +20,6 @@ void UGFireballAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 		if(Projectile)
 		{
 			Projectile->FinishSpawning(SocketTransform);
-			EndAbility(Handle, ActorInfo, ActivationInfo, true, false);
 		}
 	}
 }
