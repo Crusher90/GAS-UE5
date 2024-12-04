@@ -8,6 +8,7 @@
 #include "Components/BoxComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "NiagaraComponent.h"
+#include "Components/AudioComponent.h"
 
 // Sets default values
 ABonfire::ABonfire()
@@ -15,8 +16,11 @@ ABonfire::ABonfire()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
+	SceneComp = CreateDefaultSubobject<USceneComponent>("Scene");
+	SetRootComponent(SceneComp);
+
 	BonfireMesh = CreateDefaultSubobject<UStaticMeshComponent>("BonfireMesh");
-	SetRootComponent(BonfireMesh);
+	BonfireMesh->SetupAttachment(SceneComp);
 	BonfireMesh->SetCollisionEnabled(ECollisionEnabled::Type::NoCollision);
 	BonfireMesh->SetCollisionResponseToAllChannels(ECR_Ignore);
 
@@ -36,6 +40,9 @@ ABonfire::ABonfire()
 	BonfireParticle->SetupAttachment(GetRootComponent());
 	BonfireParticle->SetCollisionEnabled(ECollisionEnabled::Type::NoCollision);
 	BonfireParticle->SetCollisionResponseToAllChannels(ECR_Ignore);
+
+	BonfireSound = CreateDefaultSubobject<UAudioComponent>("Bonfire Sound");
+	BonfireSound->SetupAttachment(BonfireMesh);
 }
 
 // Called when the game starts or when spawned
@@ -47,7 +54,6 @@ void ABonfire::BeginPlay()
 	CapsuleComp->OnComponentEndOverlap.AddDynamic(this, &ThisClass::OnEndOverlapCapsule);
 	BoxComp->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::OnOverlapBox);
 	BoxComp->OnComponentEndOverlap.AddDynamic(this, &ThisClass::OnEndOverlapBox);
-	
 }
 
 // Called every frame

@@ -30,6 +30,9 @@ public:
 	
 private:
 	UPROPERTY(VisibleAnywhere, Category="Bonfire|Properties")
+	USceneComponent* SceneComp;
+	
+	UPROPERTY(VisibleAnywhere, Category="Bonfire|Properties")
 	UStaticMeshComponent* BonfireMesh;
 	
 	UPROPERTY(VisibleAnywhere, Category="Bonfire|Properties")
@@ -40,6 +43,9 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category="Bonfire|Properties")
 	UNiagaraComponent* BonfireParticle;
+
+	UPROPERTY(VisibleAnywhere, Category="Bonfire|Properties")
+	UAudioComponent* BonfireSound;
 
 	UPROPERTY(EditAnywhere, Category="Bonfire|Properties")
 	TSubclassOf<UGameplayEffect> BonfireHealEffect;

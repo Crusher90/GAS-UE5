@@ -4,6 +4,7 @@
 #include "Character/GAttributeSet.h"
 
 #include "Net/UnrealNetwork.h"
+#include "GameplayEffectExtension.h"
 
 void UGAttributeSet::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
 {
@@ -16,9 +17,21 @@ void UGAttributeSet::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>&
 	DOREPLIFETIME_CONDITION_NOTIFY(ThisClass, MaxStamina, COND_None, REPNOTIFY_Always)
 }
 
-void UGAttributeSet::PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data)
+void UGAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data)
 {
 	Super::PostGameplayEffectExecute(Data);
+	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
+	{
+		SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth()));
+	}
+	if (Data.EvaluatedData.Attribute == GetManaAttribute())
+	{
+		SetMana(FMath::Clamp(GetMana(), 0.f, GetMaxMana()));
+	}
+	if (Data.EvaluatedData.Attribute == GetStaminaAttribute())
+	{
+		SetStamina(FMath::Clamp(GetStamina(), 0.f, GetMaxStamina()));
+	}
 }
 
 void UGAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealth) const
