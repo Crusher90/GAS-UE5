@@ -6,6 +6,8 @@
 #include "Runtime/AIModule/Classes/AIController.h"
 #include "GAIController.generated.h"
 
+class UBehaviorTreeComponent;
+
 UCLASS()
 class GAS_API AGAIController : public AAIController
 {
@@ -26,4 +28,11 @@ public:
 private:
 	UPROPERTY(VisibleAnywhere, Category="AI|Properties")
 	UAIPerceptionComponent* PerceptionComp;
+
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="AI|Properties")
+	UBehaviorTreeComponent* BehaviorComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="AI|Properties")
+	UBlackboardComponent* BlackboardComp;
 };

@@ -7,6 +7,7 @@
 #include "AbilitySystemInterface.h"
 #include "GBaseCharacter.generated.h"
 
+class UGAttributeSet;
 class UGameplayEffect;
 class UGameplayAbility;
 class UGAbilitySystemComponent;
@@ -30,6 +31,8 @@ public:
 
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
+	UGAttributeSet* GetAttributeSet() const;
+
 	void GiveStartupAbilities();
 
 	void InitDefaultAttributes() const;
@@ -37,6 +40,9 @@ public:
 public:
 	UPROPERTY(VisibleAnywhere, Category="Ability|Properties")
 	UGAbilitySystemComponent* AbilitySystemComp;
+
+	UPROPERTY(VisibleAnywhere, Category="GAS")
+	UGAttributeSet* AttributeSet;
 
 	UPROPERTY(EditDefaultsOnly, Category="Ability|StartupAbilities")
 	TMap<FName, TSubclassOf<UGameplayAbility>> StartupAbilities;

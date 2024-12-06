@@ -60,7 +60,10 @@ void AGCharacter::OnRep_PlayerState()
 	{
 		AbilitySystemComp = CastChecked<UGAbilitySystemComponent>(PS->GetAbilitySystemComponent());
 		AbilitySystemComp->InitAbilityActorInfo(PS, this);
-		InitDefaultAttributes();
+		if(InitAttributeGameplayEffect)
+		{
+			InitDefaultAttributes();
+		}
 	}
 }
 
