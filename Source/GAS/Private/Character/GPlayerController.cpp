@@ -28,11 +28,14 @@ void AGPlayerController::SetupInputComponent()
 void AGPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-	MyCharacter = CastChecked<AGCharacter>(GetPawn());
-	if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
-		ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(this->GetLocalPlayer()))
+	MyCharacter = Cast<AGCharacter>(GetPawn());
+	if (MyCharacter)
 	{
-		Subsystem->AddMappingContext(MappingContext, 0);
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
+		ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(this->GetLocalPlayer()))
+		{
+			Subsystem->AddMappingContext(MappingContext, 0);
+		}
 	}
 }
 
