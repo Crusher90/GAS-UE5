@@ -16,6 +16,7 @@ AGAIController::AGAIController()
 	PerceptionComp = CreateDefaultSubobject<UAIPerceptionComponent>("PerceptionComp");
 	BehaviorComp = CreateDefaultSubobject<UBehaviorTreeComponent>("BehaviorComp");
 	BlackboardComp = CreateDefaultSubobject<UBlackboardComponent>("BlackboardComp");
+	bStartAILogicOnPossess = true;
 }
 
 // Called when the game starts or when spawned

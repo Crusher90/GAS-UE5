@@ -42,3 +42,8 @@ void AEnemy::PossessedBy(AController* NewController)
 		InitDefaultAttributes();
 	}
 }
+
+FRotator AEnemy::GetViewRotation() const
+{
+	return GetActorRotation();
+}
