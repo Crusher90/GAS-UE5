@@ -14,6 +14,8 @@ AGBurdenProjectile::AGBurdenProjectile()
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
+	SetReplicates(true);
+
 	SphereComp = CreateDefaultSubobject<USphereComponent>(FName("SphereComp"));
 	SetRootComponent(SphereComp);
 	SphereComp->SetCollisionEnabled(ECollisionEnabled::Type::QueryOnly);
@@ -32,6 +34,7 @@ AGBurdenProjectile::AGBurdenProjectile()
 	ProjectileMovement->ProjectileGravityScale = 1.f;
 	ProjectileMovement->bIsHomingProjectile = true;
 	ProjectileMovement->HomingAccelerationMagnitude = 4000.f;
+	ProjectileMovement->SetIsReplicated(true);
 }
 
 // Called when the game starts or when spawned

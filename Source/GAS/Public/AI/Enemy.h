@@ -26,4 +26,7 @@ public:
 	virtual void PossessedBy(AController* NewController) override;
 
 	virtual FRotator GetViewRotation() const override;
+
+	UPROPERTY(EditAnywhere, Category="GameplayEffect|DamageEffect")
+	TSubclassOf<UGameplayEffect> DamageEffectClass;
 };

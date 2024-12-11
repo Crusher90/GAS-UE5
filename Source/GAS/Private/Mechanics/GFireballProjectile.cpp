@@ -16,6 +16,7 @@ AGFireballProjectile::AGFireballProjectile()
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
+	SetReplicates(true);
 	SphereComp = CreateDefaultSubobject<USphereComponent>(FName("SphereComp"));
 	SetRootComponent(SphereComp);
 	SphereComp->SetCollisionEnabled(ECollisionEnabled::Type::NoCollision);
@@ -29,6 +30,7 @@ AGFireballProjectile::AGFireballProjectile()
 	ProjectileMovement->InitialSpeed = 2000.f;
 	ProjectileMovement->MaxSpeed = 2000.f;
 	ProjectileMovement->ProjectileGravityScale = 0.f;
+	ProjectileMovement->SetIsReplicated(true);
 
 	Location1 = CreateDefaultSubobject<USceneComponent>(FName("Location1"));
 	Location1->SetupAttachment(GetRootComponent());

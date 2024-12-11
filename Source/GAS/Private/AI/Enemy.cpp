@@ -15,6 +15,7 @@ AEnemy::AEnemy()
 	PrimaryActorTick.bCanEverTick = true;
 
 	AbilitySystemComp = CreateDefaultSubobject<UGAbilitySystemComponent>("AbilitySystemComponent");
+	AbilitySystemComp->SetIsReplicated(true);
 	AbilitySystemComp->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
 	AttributeSet = CreateDefaultSubobject<UGAttributeSet>("AttributeSet");
 	GetCharacterMovement()->MaxWalkSpeed = 500.f;
@@ -36,6 +37,7 @@ void AEnemy::Tick(float DeltaTime)
 void AEnemy::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
+	AbilitySystemComp->InitAbilityActorInfo(this, this);
 	GiveStartupAbilities();
 	if(InitAttributeGameplayEffect)
 	{
