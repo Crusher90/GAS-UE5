@@ -4,6 +4,7 @@
 #include "AI/GCloseRangedEnemy.h"
 
 #include "AbilitySystemComponent.h"
+#include "Character/GAttributeSet.h"
 #include "Components/BoxComponent.h"
 
 
@@ -49,6 +50,8 @@ void AGCloseRangedEnemy::WeaponROverlap(UPrimitiveComponent* OverlappedComponent
 		{
 			const FGameplayEffectContextHandle ContextHandle = AbilitySystemInterface->GetAbilitySystemComponent()->MakeEffectContext();
 			const FGameplayEffectSpecHandle SpecHandle = AbilitySystemInterface->GetAbilitySystemComponent()->MakeOutgoingSpec(DamageEffectClass, 1.f, ContextHandle);
+			bool bFound;
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Emerald, FString::Printf(TEXT("enemy health is %f"), GetAbilitySystemComponent()->GetGameplayAttributeValue(GetAttributeSet()->GetHealthAttribute(), bFound)));
 			AbilitySystemInterface->GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
 		}
 	}
