@@ -17,15 +17,19 @@ AEnemy::AEnemy()
 	AbilitySystemComp = CreateDefaultSubobject<UGAbilitySystemComponent>("AbilitySystemComponent");
 	AbilitySystemComp->SetIsReplicated(true);
 	AbilitySystemComp->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
-	AttributeSet = CreateDefaultSubobject<UGAttributeSet>("AttributeSet");
+	AttributeSet = CreateDefaultSubobject<UGAttributeSet>("AttributeSetG");
 	GetCharacterMovement()->MaxWalkSpeed = 500.f;
+	GetCharacterMovement()->bOrientRotationToMovement = true;
 }
 
 // Called when the game starts or when spawned
 void AEnemy::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	if (AttributeSet)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("attribute set is %s"), *AttributeSet->GetName()));
+	}
 }
 
 // Called every frame
