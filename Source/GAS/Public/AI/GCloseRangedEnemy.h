@@ -32,8 +32,7 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-private:
+	
 	UPROPERTY(VisibleAnywhere, Category="Properties|Weapon")
 	UBoxComponent* LWeaponBoxCollision;
 

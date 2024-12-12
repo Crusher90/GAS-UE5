@@ -18,13 +18,11 @@ AGCloseRangedEnemy::AGCloseRangedEnemy()
 	LWeaponBoxCollision->SetupAttachment(GetMesh(), FName("weapon_l"));
 	LWeaponBoxCollision->SetCollisionEnabled(ECollisionEnabled::Type::NoCollision);
 	LWeaponBoxCollision->SetCollisionResponseToAllChannels(ECR_Ignore);
-	LWeaponBoxCollision->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
 	
 	RWeaponBoxCollision = CreateDefaultSubobject<UBoxComponent>("RightWeaponBoxCollision");
 	RWeaponBoxCollision->SetupAttachment(GetMesh(), FName("weapon_r"));
 	RWeaponBoxCollision->SetCollisionEnabled(ECollisionEnabled::Type::NoCollision);
 	RWeaponBoxCollision->SetCollisionResponseToAllChannels(ECR_Ignore);
-	RWeaponBoxCollision->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
 }
 
 void AGCloseRangedEnemy::WeaponLOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
