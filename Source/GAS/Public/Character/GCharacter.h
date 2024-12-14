@@ -42,7 +42,11 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category="Properties|Camera")
 	UCameraComponent* Camera;
-	
+
+	UPROPERTY(EditDefaultsOnly, Category="Properties|GameplayEffect")
+	TSubclassOf<UGameplayEffect> DamageEffectClass;
+
+public:
 	UPROPERTY(VisibleAnywhere, Category="Properties|Weapon")
 	UBoxComponent* WeaponBoxCollision;
 };
