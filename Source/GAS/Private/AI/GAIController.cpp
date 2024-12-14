@@ -5,6 +5,7 @@
 
 #include "BehaviorTree/BehaviorTreeComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "Interface/GPlayerInterface.h"
 #include "Perception/AIPerceptionComponent.h"
 
 
@@ -19,10 +20,32 @@ AGAIController::AGAIController()
 	bStartAILogicOnPossess = true;
 }
 
+void AGAIController::PerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
+{
+	if (Actor != nullptr && Actor->Implements<UGPlayerInterface>())
+	{
+		GetBlackboardComponent()->SetValueAsObject(FName("TargetActor"), Actor);
+		GetBlackboardComponent()->SetValueAsBool(FName("IsAgro"), true);
+	}
+}
+
+void AGAIController::PerceptionForgotten(AActor* Actor)
+{
+	if (Actor != nullptr && Actor->Implements<UGPlayerInterface>())
+	{
+		GetBlackboardComponent()->SetValueAsObject(FName("TargetActor"), nullptr);
+		GetBlackboardComponent()->SetValueAsBool(FName("IsAgro"), false);
+		BehaviorComp->RestartLogic();
+	}
+}
+
 // Called when the game starts or when spawned
 void AGAIController::BeginPlay()
 {
 	Super::BeginPlay();
+	PerceptionComp->OnTargetPerceptionUpdated.AddDynamic(this, &ThisClass::PerceptionUpdated);
+	PerceptionComp->OnTargetPerceptionForgotten.AddDynamic(this, &ThisClass::PerceptionForgotten);
+	BehaviorComp->StartLogic();
 }
 
 // Called every frame

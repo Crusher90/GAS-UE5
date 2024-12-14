@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Perception/AIPerceptionTypes.h"
 #include "Runtime/AIModule/Classes/AIController.h"
 #include "GAIController.generated.h"
 
@@ -18,6 +19,12 @@ public:
 	AGAIController();
 
 protected:
+	UFUNCTION()
+	void PerceptionUpdated(AActor* Actor, FAIStimulus Stimulus);
+	
+	UFUNCTION()
+	void PerceptionForgotten(AActor* Actor);
+	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 

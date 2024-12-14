@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GBaseCharacter.h"
+#include "Interface/GPlayerInterface.h"
 #include "GCharacter.generated.h"
 
 class UBoxComponent;
@@ -11,7 +12,7 @@ class USpringArmComponent;
 class UCameraComponent;
 
 UCLASS()
-class GAS_API AGCharacter : public AGBaseCharacter
+class GAS_API AGCharacter : public AGBaseCharacter, public IGPlayerInterface
 {
 	GENERATED_BODY()
 
