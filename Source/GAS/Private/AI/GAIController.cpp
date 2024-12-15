@@ -13,7 +13,7 @@
 AGAIController::AGAIController()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = false;
+	PrimaryActorTick.bCanEverTick = true;
 	PerceptionComp = CreateDefaultSubobject<UAIPerceptionComponent>("PerceptionComp");
 	BehaviorComp = CreateDefaultSubobject<UBehaviorTreeComponent>("BehaviorComp");
 	BlackboardComp = CreateDefaultSubobject<UBlackboardComponent>("BlackboardComp");
@@ -45,7 +45,6 @@ void AGAIController::BeginPlay()
 	Super::BeginPlay();
 	PerceptionComp->OnTargetPerceptionUpdated.AddDynamic(this, &ThisClass::PerceptionUpdated);
 	PerceptionComp->OnTargetPerceptionForgotten.AddDynamic(this, &ThisClass::PerceptionForgotten);
-	BehaviorComp->StartLogic();
 }
 
 // Called every frame
