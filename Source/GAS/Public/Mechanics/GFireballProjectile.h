@@ -3,14 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "GProjectileBase.h"
 #include "GFireballProjectile.generated.h"
 
 class UProjectileMovementComponent;
 class USphereComponent;
 
 UCLASS()
-class GAS_API AGFireballProjectile : public AActor
+class GAS_API AGFireballProjectile : public AGProjectileBase
 {
 	GENERATED_BODY()
 
@@ -27,30 +27,6 @@ protected:
 	void SpawnProjectile(const FTransform& SpawnTransform) const;
 
 private:
-	UPROPERTY(VisibleAnywhere, Category="Projectile|Collision")
-	USphereComponent* SphereComp;
-
-	UPROPERTY(VisibleAnywhere, Category="Projectile|Particle")
-	UParticleSystemComponent* ParticleComp;
-
-	UPROPERTY(VisibleAnywhere, Category="Projectile|Movement")
-	UProjectileMovementComponent* ProjectileMovement;
-
-	UPROPERTY(VisibleAnywhere, Category="Projectile|Scene")
-	USceneComponent* Location1;
-
-	UPROPERTY(VisibleAnywhere, Category="Projectile|Scene")
-	USceneComponent* Location2;
-
-	UPROPERTY(VisibleAnywhere, Category="Projectile|Scene")
-	USceneComponent* Location3;
-
-	UPROPERTY(VisibleAnywhere, Category="Projectile|Scene")
-	USceneComponent* Location4;
-
-	UPROPERTY(VisibleAnywhere, Category="Projectile|Scene")
-	USceneComponent* Location5;
-
 	UPROPERTY(EditAnywhere, Category="Projectile|Spawn")
 	TSubclassOf<AActor> BurdenProjectileClass;
 

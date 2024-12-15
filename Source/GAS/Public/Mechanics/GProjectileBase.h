@@ -24,7 +24,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-private:
+public:
 	UPROPERTY(VisibleAnywhere, Category="Props|Collision")
 	USphereComponent* CollisionComp;
 
@@ -42,6 +42,6 @@ private:
 
 protected:
 	UFUNCTION()
-	void OnProjectileOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
+	virtual void OnProjectileOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 		int OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 };
