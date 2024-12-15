@@ -23,4 +23,10 @@ protected:
 	virtual void PreActivate(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo,
 		const FGameplayAbilityActivationInfo ActivationInfo, FOnGameplayAbilityEnded::FDelegate* OnGameplayAbilityEndedDelegate,
 		const FGameplayEventData* TriggerEventData = nullptr) override;
+
+	UFUNCTION(BlueprintCallable, Category = "Ability|Events")
+	void SpawnProjectile();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Ability|Events")
+	TSubclassOf<AActor> SpawnProjectileClass;
 };

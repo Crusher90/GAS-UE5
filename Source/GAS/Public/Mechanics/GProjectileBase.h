@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "GProjectileBase.generated.h"
 
+class UGameplayEffect;
 class UNiagaraComponent;
 class USphereComponent;
 class UProjectileMovementComponent;
@@ -35,6 +36,9 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category="Projectile|Movement")
 	UProjectileMovementComponent* ProjectileMovement;
+
+	UPROPERTY(VisibleAnywhere, Category="Projectile|Movement")
+	TSubclassOf<UGameplayEffect> OverlapEffect;
 
 protected:
 	UFUNCTION()
