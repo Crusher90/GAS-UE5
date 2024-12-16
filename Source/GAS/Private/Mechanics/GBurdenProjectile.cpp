@@ -16,7 +16,6 @@ AGBurdenProjectile::AGBurdenProjectile()
 	SetReplicates(true);
 	CollisionComp->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Overlap);
 	CollisionComp->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Overlap);
-	CollisionComp->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
 	
 	ProjectileMovement->bIsHomingProjectile = true;
 	ProjectileMovement->HomingAccelerationMagnitude = 4000.f;

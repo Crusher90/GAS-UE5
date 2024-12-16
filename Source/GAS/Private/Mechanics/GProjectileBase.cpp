@@ -3,6 +3,9 @@
 
 #include "Mechanics/GProjectileBase.h"
 
+#include "AbilitySystemComponent.h"
+#include "AbilitySystemInterface.h"
+#include "GameplayEffectTypes.h"
 #include "NiagaraComponent.h"
 #include "Components/AudioComponent.h"
 #include "Components/SphereComponent.h"
@@ -47,6 +50,15 @@ void AGProjectileBase::BeginPlay()
 void AGProjectileBase::OnProjectileOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	if (OtherActor)
+	{
+		if (const IAbilitySystemInterface* AbilitySystemInterface = Cast<IAbilitySystemInterface>(OtherActor))
+		{
+			const FGameplayEffectContextHandle ContextHandle = AbilitySystemInterface->GetAbilitySystemComponent()->MakeEffectContext();
+			const FGameplayEffectSpecHandle SpecHandle = AbilitySystemInterface->GetAbilitySystemComponent()->MakeOutgoingSpec(OverlapEffect, 1.f, ContextHandle);
+			AbilitySystemInterface->GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
+		}
+	}
 	Destroy();
 }
 

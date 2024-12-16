@@ -37,7 +37,7 @@ public:
 	UPROPERTY(VisibleAnywhere, Category="Projectile|Movement")
 	UProjectileMovementComponent* ProjectileMovement;
 
-	UPROPERTY(VisibleAnywhere, Category="Projectile|Movement")
+	UPROPERTY(EditDefaultsOnly, Category="Projectile|Movement")
 	TSubclassOf<UGameplayEffect> OverlapEffect;
 
 protected:
