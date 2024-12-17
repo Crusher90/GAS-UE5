@@ -34,7 +34,7 @@ public:
 	UPROPERTY(VisibleAnywhere, Category="Props|Audio")
 	UAudioComponent* AudioComp;
 
-	UPROPERTY(VisibleAnywhere, Category="Projectile|Movement")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Projectile|Movement")
 	UProjectileMovementComponent* ProjectileMovement;
 
 	UPROPERTY(EditDefaultsOnly, Category="Projectile|Movement")
