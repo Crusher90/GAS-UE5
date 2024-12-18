@@ -99,16 +99,16 @@ void ABonfire::OnOverlapBox(UPrimitiveComponent* OverlappedComponent, AActor* Ot
 void ABonfire::OnEndOverlapCapsule(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	if(OtherActor)
-	{
-		if(const IAbilitySystemInterface* Interface = Cast<IAbilitySystemInterface>(OtherActor))
-		{
-			UAbilitySystemComponent* AbilitySystemComp = Interface->GetAbilitySystemComponent();
-			const FGameplayEffectSpecHandle RemoveDamageEffectSpecHandle = AbilitySystemComp->
-			MakeOutgoingSpec(RemoveDamageEffect,1.f, AbilitySystemComp->MakeEffectContext());
-			AbilitySystemComp->ApplyGameplayEffectSpecToSelf(*RemoveDamageEffectSpecHandle.Data);
-		}
-	}
+	// if(OtherActor)
+	// {
+	// 	if(const IAbilitySystemInterface* Interface = Cast<IAbilitySystemInterface>(OtherActor))
+	// 	{
+	// 		UAbilitySystemComponent* AbilitySystemComp = Interface->GetAbilitySystemComponent();
+	// 		const FGameplayEffectSpecHandle RemoveDamageEffectSpecHandle = AbilitySystemComp->
+	// 		MakeOutgoingSpec(RemoveDamageEffect,1.f, AbilitySystemComp->MakeEffectContext());
+	// 		AbilitySystemComp->ApplyGameplayEffectSpecToSelf(*RemoveDamageEffectSpecHandle.Data);
+	// 	}
+	// }
 }
 
 /**
@@ -122,9 +122,15 @@ void ABonfire::OnEndOverlapBox(UPrimitiveComponent* OverlappedComponent, AActor*
 		if(const IAbilitySystemInterface* Interface = Cast<IAbilitySystemInterface>(OtherActor))
 		{
 			UAbilitySystemComponent* AbilitySystemComp = Interface->GetAbilitySystemComponent();
-			const FGameplayEffectSpecHandle RemoveHealEffectSpecHandle = AbilitySystemComp->
-			MakeOutgoingSpec(RemoveHealEffect,1.f, AbilitySystemComp->MakeEffectContext());
-			AbilitySystemComp->ApplyGameplayEffectSpecToSelf(*RemoveHealEffectSpecHandle.Data);
+			// const FGameplayEffectSpecHandle RemoveHealEffectSpecHandle = AbilitySystemComp->
+			// MakeOutgoingSpec(RemoveHealEffect,1.f, AbilitySystemComp->MakeEffectContext());
+			// AbilitySystemComp->ApplyGameplayEffectSpecToSelf(*RemoveHealEffectSpecHandle.Data);
+			const FGameplayTagContainer EffectTagContainer = AbilitySystemComp->GetOwnedGameplayTags();
+			bool bHasTag = EffectTagContainer.HasTag(FGameplayTag::RequestGameplayTag(FName("Player.Status.IsHealing")));
+			if (bHasTag)
+			{
+				AbilitySystemComp->RemoveActiveEffectsWithTags(EffectTagContainer);
+			}
 		}
 	}
 }
