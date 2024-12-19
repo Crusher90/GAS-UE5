@@ -46,9 +46,3 @@ void AGAIController::BeginPlay()
 	PerceptionComp->OnTargetPerceptionUpdated.AddDynamic(this, &ThisClass::PerceptionUpdated);
 	PerceptionComp->OnTargetPerceptionForgotten.AddDynamic(this, &ThisClass::PerceptionForgotten);
 }
-
-// Called every frame
-void AGAIController::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}

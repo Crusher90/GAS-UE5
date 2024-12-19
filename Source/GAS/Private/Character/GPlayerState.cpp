@@ -20,8 +20,3 @@ UAbilitySystemComponent* AGPlayerState::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComponent;
 }
-
-void AGPlayerState::BeginPlay()
-{
-	Super::BeginPlay();
-}

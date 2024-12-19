@@ -32,20 +32,18 @@ void AEnemy::BeginPlay()
 	}
 }
 
-// Called every frame
-void AEnemy::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-
 void AEnemy::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
 	AbilitySystemComp->InitAbilityActorInfo(this, this);
 	GiveStartupAbilities();
-	if(InitAttributeGameplayEffect)
+	if (HasAuthority())
 	{
-		InitDefaultAttributes();
+		GiveStartupAbilities();
+		if(InitAttributeGameplayEffect)
+		{
+			InitDefaultAttributes();
+		}
 	}
 }
 

@@ -24,10 +24,6 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 	
 private:
 	UPROPERTY(VisibleAnywhere, Category="Bonfire|Properties")
@@ -54,12 +50,6 @@ private:
 	UPROPERTY(EditAnywhere, Category="Bonfire|Properties")
 	TSubclassOf<UGameplayEffect> BonfireDamageEffect;
 
-	UPROPERTY(EditAnywhere, Category="Bonfire|Properties")
-	TSubclassOf<UGameplayEffect> RemoveDamageEffect;
-
-	UPROPERTY(EditAnywhere, Category="Bonfire|Properties")
-	TSubclassOf<UGameplayEffect> RemoveHealEffect;
-
 	FActiveGameplayEffectHandle ActiveBonfireHealEffect;
 	FActiveGameplayEffectHandle ActiveBonfireDamageEffect;
 
@@ -80,4 +70,3 @@ protected:
 	void OnEndOverlapBox(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 		int32 OtherBodyIndex);
 };
-

@@ -61,4 +61,3 @@ void AGProjectileBase::OnProjectileOverlap(UPrimitiveComponent* OverlappedCompon
 	}
 	Destroy();
 }
-

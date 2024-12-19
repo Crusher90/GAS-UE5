@@ -3,6 +3,7 @@
 
 #include "Abilities/GDodgeAbility.h"
 
+#include "AbilitySystemComponent.h"
 #include "GameFramework/Character.h"
 
 
@@ -11,7 +12,7 @@ void UGDodgeAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
                                      const FGameplayEventData* TriggerEventData)
 {
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString("ActivateAbilityDodgeAbility"));
+	// GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString("ActivateAbilityDodgeAbility"));
 
 	if(ACharacter* Character = Cast<ACharacter>(GetAvatarActorFromActorInfo()))
 	{
@@ -25,6 +26,6 @@ void UGDodgeAbility::PreActivate(const FGameplayAbilitySpecHandle Handle, const 
 	FOnGameplayAbilityEnded::FDelegate* OnGameplayAbilityEndedDelegate, const FGameplayEventData* TriggerEventData)
 {
 	Super::PreActivate(Handle, ActorInfo, ActivationInfo, OnGameplayAbilityEndedDelegate, TriggerEventData);
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString("ActivateAbilityPreDodgeAbility"));
+	// GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString("ActivateAbilityPreDodgeAbility"));
 	CommitAbility(Handle, ActorInfo, ActivationInfo);
 }

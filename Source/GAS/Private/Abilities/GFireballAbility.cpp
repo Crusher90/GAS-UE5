@@ -11,7 +11,7 @@ void UGFireballAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
                                         const FGameplayEventData* TriggerEventData)
 {
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString("UGFireballAbility::ActivateAbilityFireballAbility"));
+	// GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString("UGFireballAbility::ActivateAbilityFireballAbility"));
 	if(const USkeletalMeshSocket* SpawnSocket = ActorInfo->GetAnimInstance()->GetSkelMeshComponent()->GetSocketByName(FName("ProjectileSpawnSocket")))
 	{
 		const FTransform SocketTransform = SpawnSocket->GetSocketTransform(ActorInfo->GetAnimInstance()->GetSkelMeshComponent());
@@ -29,6 +29,6 @@ void UGFireballAbility::PreActivate(const FGameplayAbilitySpecHandle Handle, con
 	FOnGameplayAbilityEnded::FDelegate* OnGameplayAbilityEndedDelegate, const FGameplayEventData* TriggerEventData)
 {
 	Super::PreActivate(Handle, ActorInfo, ActivationInfo, OnGameplayAbilityEndedDelegate, TriggerEventData);
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Emerald, FString("UGFireballAbility::PreActivateFireballAbility"));
+	// GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Emerald, FString("UGFireballAbility::PreActivateFireballAbility"));
 	CommitAbility(Handle, ActorInfo, ActivationInfo);
 }

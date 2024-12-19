@@ -6,7 +6,6 @@
 #include "Enemy.h"
 #include "GRangedEnemy.generated.h"
 
-class UBoxComponent;
 
 UCLASS()
 class GAS_API AGRangedEnemy : public AEnemy

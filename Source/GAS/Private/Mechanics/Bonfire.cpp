@@ -56,12 +56,6 @@ void ABonfire::BeginPlay()
 	BoxComp->OnComponentEndOverlap.AddDynamic(this, &ThisClass::OnEndOverlapBox);
 }
 
-// Called every frame
-void ABonfire::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-
 void ABonfire::OnOverlapCapsule(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
@@ -118,4 +112,3 @@ void ABonfire::OnEndOverlapBox(UPrimitiveComponent* OverlappedComponent, AActor*
 		}
 	}
 }
-

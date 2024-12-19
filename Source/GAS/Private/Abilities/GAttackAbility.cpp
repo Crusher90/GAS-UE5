@@ -23,7 +23,7 @@ void UGAttackAbility::PreActivate(const FGameplayAbilitySpecHandle Handle, const
 	CommitAbility(Handle, ActorInfo, ActivationInfo);
 }
 
-void UGAttackAbility::SpawnProjectile()
+void UGAttackAbility::SpawnProjectile() const
 {
 	const ACharacter* Character = Cast<ACharacter>(GetAvatarActorFromActorInfo());
 	if (const USkeletalMeshSocket* Socket = Character->GetMesh()->GetSocketByName(FName("SpawnProjectile")))

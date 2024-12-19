@@ -25,7 +25,7 @@ protected:
 		const FGameplayEventData* TriggerEventData = nullptr) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Ability|Events")
-	void SpawnProjectile();
+	void SpawnProjectile() const;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Ability|Events")
 	TSubclassOf<AActor> SpawnProjectileClass;

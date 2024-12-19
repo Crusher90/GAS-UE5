@@ -3,8 +3,6 @@
 
 #include "AI/GRangedEnemy.h"
 
-#include "Components/BoxComponent.h"
-
 
 // Sets default values
 AGRangedEnemy::AGRangedEnemy()
@@ -17,5 +15,4 @@ AGRangedEnemy::AGRangedEnemy()
 void AGRangedEnemy::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }

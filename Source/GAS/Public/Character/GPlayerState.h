@@ -22,11 +22,7 @@ public:
 	AGPlayerState();
 
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
-
-protected:
-	virtual void BeginPlay() override;
 	
-public:
 	UPROPERTY(VisibleAnywhere, Category="GAS")
 	UGAbilitySystemComponent* AbilitySystemComponent;
 

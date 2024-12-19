@@ -46,22 +46,20 @@ void AGCharacter::BeginPlay()
 	WeaponBoxCollision->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::OnWeaponOverlap);
 }
 
-// Called every frame
-void AGCharacter::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-
 void AGCharacter::OnRep_PlayerState()
 {
 	Super::OnRep_PlayerState();
 	if(AGPlayerState* PS = GetPlayerState<AGPlayerState>())
 	{
-		AbilitySystemComp = CastChecked<UGAbilitySystemComponent>(PS->GetAbilitySystemComponent());
+		AbilitySystemComp = PS->AbilitySystemComponent;
 		AbilitySystemComp->InitAbilityActorInfo(PS, this);
-		if(InitAttributeGameplayEffect)
+		if (HasAuthority())
 		{
-			InitDefaultAttributes();
+			GiveStartupAbilities();
+			if(InitAttributeGameplayEffect)
+			{
+				InitDefaultAttributes();
+			}
 		}
 	}
 }
@@ -71,12 +69,15 @@ void AGCharacter::PossessedBy(AController* NewController)
 	Super::PossessedBy(NewController);
 	if(AGPlayerState* PS = GetPlayerState<AGPlayerState>())
 	{
-		AbilitySystemComp = CastChecked<UGAbilitySystemComponent>(PS->GetAbilitySystemComponent());
+		AbilitySystemComp = PS->AbilitySystemComponent;
 		AbilitySystemComp->InitAbilityActorInfo(PS, this);
-		GiveStartupAbilities();
-		if(InitAttributeGameplayEffect)
+		if (HasAuthority())
 		{
-			InitDefaultAttributes();
+			GiveStartupAbilities();
+			if(InitAttributeGameplayEffect)
+			{
+				InitDefaultAttributes();
+			}
 		}
 	}
 }

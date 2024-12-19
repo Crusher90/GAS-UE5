@@ -62,10 +62,3 @@ void AGCloseRangedEnemy::BeginPlay()
 	LWeaponBoxCollision->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::WeaponLOverlap);
 	RWeaponBoxCollision->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::WeaponROverlap);
 }
-
-// Called every frame
-void AGCloseRangedEnemy::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-

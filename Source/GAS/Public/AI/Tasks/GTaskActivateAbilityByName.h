@@ -4,16 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "BehaviorTree/BTTaskNode.h"
-#include "GTaskAttack.generated.h"
+#include "GTaskActivateAbilityByName.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class GAS_API UGTaskAttack : public UBTTaskNode
+class GAS_API UGTaskActivateAbilityByName : public UBTTaskNode
 {
 	GENERATED_BODY()
 
 public:
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
+
+	UPROPERTY(EditAnywhere, Category="Ability")
+	FName AbilityName;
 };
