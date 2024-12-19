@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "ActiveGameplayEffectHandle.h"
 #include "GameFramework/Actor.h"
 #include "Bonfire.generated.h"
 
@@ -58,6 +59,9 @@ private:
 
 	UPROPERTY(EditAnywhere, Category="Bonfire|Properties")
 	TSubclassOf<UGameplayEffect> RemoveHealEffect;
+
+	FActiveGameplayEffectHandle ActiveBonfireHealEffect;
+	FActiveGameplayEffectHandle ActiveBonfireDamageEffect;
 
 protected:
 	UFUNCTION()

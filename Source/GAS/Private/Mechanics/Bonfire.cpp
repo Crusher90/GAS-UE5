@@ -60,7 +60,6 @@ void ABonfire::BeginPlay()
 void ABonfire::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void ABonfire::OnOverlapCapsule(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
@@ -73,7 +72,8 @@ void ABonfire::OnOverlapCapsule(UPrimitiveComponent* OverlappedComponent, AActor
 			UAbilitySystemComponent* AbilitySystemComp = Interface->GetAbilitySystemComponent();
 			const FGameplayEffectSpecHandle DamageEffectSpecHandle = AbilitySystemComp->
 			MakeOutgoingSpec(BonfireDamageEffect,1.f, AbilitySystemComp->MakeEffectContext());
-			AbilitySystemComp->ApplyGameplayEffectSpecToSelf(*DamageEffectSpecHandle.Data);
+			AbilitySystemComp->RemoveActiveGameplayEffect(ActiveBonfireHealEffect);
+			ActiveBonfireDamageEffect = AbilitySystemComp->ApplyGameplayEffectSpecToSelf(*DamageEffectSpecHandle.Data);
 		}
 	}
 }
@@ -88,32 +88,24 @@ void ABonfire::OnOverlapBox(UPrimitiveComponent* OverlappedComponent, AActor* Ot
 			UAbilitySystemComponent* AbilitySystemComp = Interface->GetAbilitySystemComponent();
 			const FGameplayEffectSpecHandle HealEffectSpecHandle = AbilitySystemComp->
 			MakeOutgoingSpec(BonfireHealEffect,1.f, AbilitySystemComp->MakeEffectContext());
-			AbilitySystemComp->ApplyGameplayEffectSpecToSelf(*HealEffectSpecHandle.Data);
+			ActiveBonfireHealEffect = AbilitySystemComp->ApplyGameplayEffectSpecToSelf(*HealEffectSpecHandle.Data);
 		}
 	}
 }
 
-/**
- * @todo remove gameplay effect with the use of tags.
- */
 void ABonfire::OnEndOverlapCapsule(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	// if(OtherActor)
-	// {
-	// 	if(const IAbilitySystemInterface* Interface = Cast<IAbilitySystemInterface>(OtherActor))
-	// 	{
-	// 		UAbilitySystemComponent* AbilitySystemComp = Interface->GetAbilitySystemComponent();
-	// 		const FGameplayEffectSpecHandle RemoveDamageEffectSpecHandle = AbilitySystemComp->
-	// 		MakeOutgoingSpec(RemoveDamageEffect,1.f, AbilitySystemComp->MakeEffectContext());
-	// 		AbilitySystemComp->ApplyGameplayEffectSpecToSelf(*RemoveDamageEffectSpecHandle.Data);
-	// 	}
-	// }
+	if(OtherActor)
+	{
+		if(const IAbilitySystemInterface* Interface = Cast<IAbilitySystemInterface>(OtherActor))
+		{
+			UAbilitySystemComponent* AbilitySystemComp = Interface->GetAbilitySystemComponent();
+			AbilitySystemComp->RemoveActiveGameplayEffect(ActiveBonfireDamageEffect);
+		}
+	}
 }
 
-/**
- * @todo remove gameplay effect with the use of tags.
- */
 void ABonfire::OnEndOverlapBox(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
@@ -122,15 +114,7 @@ void ABonfire::OnEndOverlapBox(UPrimitiveComponent* OverlappedComponent, AActor*
 		if(const IAbilitySystemInterface* Interface = Cast<IAbilitySystemInterface>(OtherActor))
 		{
 			UAbilitySystemComponent* AbilitySystemComp = Interface->GetAbilitySystemComponent();
-			// const FGameplayEffectSpecHandle RemoveHealEffectSpecHandle = AbilitySystemComp->
-			// MakeOutgoingSpec(RemoveHealEffect,1.f, AbilitySystemComp->MakeEffectContext());
-			// AbilitySystemComp->ApplyGameplayEffectSpecToSelf(*RemoveHealEffectSpecHandle.Data);
-			const FGameplayTagContainer EffectTagContainer = AbilitySystemComp->GetOwnedGameplayTags();
-			bool bHasTag = EffectTagContainer.HasTag(FGameplayTag::RequestGameplayTag(FName("Player.Status.IsHealing")));
-			if (bHasTag)
-			{
-				AbilitySystemComp->RemoveActiveEffectsWithTags(EffectTagContainer);
-			}
+			AbilitySystemComp->RemoveActiveGameplayEffect(ActiveBonfireHealEffect);
 		}
 	}
 }
