@@ -24,9 +24,9 @@ protected:
 		const FGameplayAbilityActivationInfo ActivationInfo, FOnGameplayAbilityEnded::FDelegate* OnGameplayAbilityEndedDelegate,
 		const FGameplayEventData* TriggerEventData = nullptr) override;
 
-	UFUNCTION(BlueprintCallable, Category = "Ability|Events")
+	UFUNCTION(BlueprintCallable, Category = "GAS|Events")
 	void SpawnProjectile() const;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Ability|Events")
+	UPROPERTY(EditDefaultsOnly, Category = "GAS|Events")
 	TSubclassOf<AActor> SpawnProjectileClass;
 };

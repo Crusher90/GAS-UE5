@@ -25,6 +25,6 @@ protected:
 		const FGameplayAbilityActivationInfo ActivationInfo, FOnGameplayAbilityEnded::FDelegate* OnGameplayAbilityEndedDelegate,
 		const FGameplayEventData* TriggerEventData = nullptr) override;
 
-	UPROPERTY(EditDefaultsOnly, Category="Ability|StopSprint")
+	UPROPERTY(EditDefaultsOnly, Category="GAS|StopSprint")
 	float StopSprintSpeed = 400.f;
 };

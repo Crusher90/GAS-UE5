@@ -25,19 +25,19 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-	UPROPERTY(VisibleAnywhere, Category="Props|Collision")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Props|Collision")
 	USphereComponent* CollisionComp;
 
-	UPROPERTY(VisibleAnywhere, Category="Props|Niagara")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Props|Niagara")
 	UNiagaraComponent* NiagaraComp;
 
-	UPROPERTY(VisibleAnywhere, Category="Props|Audio")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Props|Audio")
 	UAudioComponent* AudioComp;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Projectile|Movement")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="GAS|Projectile|Movement")
 	UProjectileMovementComponent* ProjectileMovement;
 
-	UPROPERTY(EditDefaultsOnly, Category="Projectile|Movement")
+	UPROPERTY(EditDefaultsOnly, Category="GAS|Projectile|Movement")
 	TSubclassOf<UGameplayEffect> OverlapEffect;
 
 protected:

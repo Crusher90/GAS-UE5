@@ -6,6 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "GUserWidget.generated.h"
 
+class AGBaseCharacter;
 class UGAttributeSet;
 class UGAbilitySystemComponent;
 class AGPlayerState;
@@ -18,13 +19,13 @@ class GAS_API UGUserWidget : public UUserWidget
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(VisibleAnywhere, Category="Widget|Properties")
-	AGPlayerState* PState;
+	UPROPERTY(VisibleAnywhere, Category="GAS|Widget|Properties")
+	AGBaseCharacter* BaseCharacter;
 
-	UPROPERTY(VisibleAnywhere, Category="Widget|Properties")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Widget|Properties")
 	UGAbilitySystemComponent* ASComp;
 
-	UPROPERTY(VisibleAnywhere, Category="Widget|Properties")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Widget|Properties")
 	UGAttributeSet* ASet;
 
 public:

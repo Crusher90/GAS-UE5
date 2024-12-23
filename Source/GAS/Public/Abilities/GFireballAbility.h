@@ -25,6 +25,6 @@ protected:
 		const FGameplayEventData* TriggerEventData = nullptr) override;
 
 private:
-	UPROPERTY(EditDefaultsOnly, Category="Ability|Projectile")
+	UPROPERTY(EditDefaultsOnly, Category="GAS|Projectile")
 	TSubclassOf<AActor> ProjectileClass;
 };

@@ -6,6 +6,8 @@
 #include "Character/GBaseCharacter.h"
 #include "Enemy.generated.h"
 
+class UWidgetComponent;
+
 UCLASS()
 class GAS_API AEnemy : public AGBaseCharacter
 {
@@ -24,6 +26,9 @@ public:
 
 	virtual FRotator GetViewRotation() const override;
 	
-	UPROPERTY(EditDefaultsOnly, Category="Ability|DamageEffect")
+	UPROPERTY(EditDefaultsOnly, Category="GAS|DamageEffect")
 	TSubclassOf<UGameplayEffect> DamageEffectClass;
+
+	UPROPERTY(VisibleAnywhere, Category="GAS|HealthManaWidget")
+	UWidgetComponent* HealthManaBar;
 };

@@ -31,15 +31,18 @@ public:
 	void InitDefaultAttributes() const;
 
 public:
-	UPROPERTY(VisibleAnywhere, Category="Ability|Properties")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Ability|Properties")
 	UGAbilitySystemComponent* AbilitySystemComp;
 
-	UPROPERTY(VisibleAnywhere, Category="GAS")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Ability|Properties")
 	UGAttributeSet* AttributeSet;
 
-	UPROPERTY(EditDefaultsOnly, Category="Ability|StartupAbilities")
+	UPROPERTY(EditDefaultsOnly, Category="GAS|Ability|StartupAbilities")
 	TMap<FName, TSubclassOf<UGameplayAbility>> StartupAbilities;
 
-	UPROPERTY(EditDefaultsOnly, Category="Ability|StartupEffect")
+	UPROPERTY(EditDefaultsOnly, Category="GAS|Ability|StartupEffect")
 	TSubclassOf<UGameplayEffect> InitAttributeGameplayEffect;
+
+	UPROPERTY(EditDefaultsOnly, Category="GAS|Ability|StartupEffect")
+	TSubclassOf<UGameplayEffect> OwnerEffectClass;
 };

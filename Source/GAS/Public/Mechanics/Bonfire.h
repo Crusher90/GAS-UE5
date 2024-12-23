@@ -26,28 +26,28 @@ protected:
 	virtual void BeginPlay() override;
 	
 private:
-	UPROPERTY(VisibleAnywhere, Category="Bonfire|Properties")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Bonfire|Properties")
 	USceneComponent* SceneComp;
 	
-	UPROPERTY(VisibleAnywhere, Category="Bonfire|Properties")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Bonfire|Properties")
 	UStaticMeshComponent* BonfireMesh;
 	
-	UPROPERTY(VisibleAnywhere, Category="Bonfire|Properties")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Bonfire|Properties")
 	UCapsuleComponent* CapsuleComp;
 
-	UPROPERTY(VisibleAnywhere, Category="Bonfire|Properties")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Bonfire|Properties")
 	UBoxComponent* BoxComp;
 
-	UPROPERTY(VisibleAnywhere, Category="Bonfire|Properties")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Bonfire|Properties")
 	UNiagaraComponent* BonfireParticle;
 
-	UPROPERTY(VisibleAnywhere, Category="Bonfire|Properties")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Bonfire|Properties")
 	UAudioComponent* BonfireSound;
 
-	UPROPERTY(EditAnywhere, Category="Bonfire|Properties")
+	UPROPERTY(EditAnywhere, Category="GAS|Bonfire|Properties")
 	TSubclassOf<UGameplayEffect> BonfireHealEffect;
 
-	UPROPERTY(EditAnywhere, Category="Bonfire|Properties")
+	UPROPERTY(EditAnywhere, Category="GAS|Bonfire|Properties")
 	TSubclassOf<UGameplayEffect> BonfireDamageEffect;
 
 	FActiveGameplayEffectHandle ActiveBonfireHealEffect;

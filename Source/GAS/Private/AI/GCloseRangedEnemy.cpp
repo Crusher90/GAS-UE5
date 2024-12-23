@@ -33,8 +33,11 @@ void AGCloseRangedEnemy::WeaponLOverlap(UPrimitiveComponent* OverlappedComponent
 		if (const IAbilitySystemInterface* AbilitySystemInterface = Cast<IAbilitySystemInterface>(OtherActor))
 		{
 			const FGameplayEffectContextHandle ContextHandle = AbilitySystemInterface->GetAbilitySystemComponent()->MakeEffectContext();
+			const FGameplayEffectContextHandle ContextHandle2 = GetAbilitySystemComponent()->MakeEffectContext();
 			const FGameplayEffectSpecHandle SpecHandle = AbilitySystemInterface->GetAbilitySystemComponent()->MakeOutgoingSpec(DamageEffectClass, 1.f, ContextHandle);
 			AbilitySystemInterface->GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
+			const FGameplayEffectSpecHandle SpecHandle2 = GetAbilitySystemComponent()->MakeOutgoingSpec(OwnerEffectClass, 1.f, ContextHandle2);
+			GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle2.Data.Get());
 		}
 	}
 }
@@ -47,10 +50,13 @@ void AGCloseRangedEnemy::WeaponROverlap(UPrimitiveComponent* OverlappedComponent
 		if (const IAbilitySystemInterface* AbilitySystemInterface = Cast<IAbilitySystemInterface>(OtherActor))
 		{
 			const FGameplayEffectContextHandle ContextHandle = AbilitySystemInterface->GetAbilitySystemComponent()->MakeEffectContext();
+			const FGameplayEffectContextHandle ContextHandle2 = GetAbilitySystemComponent()->MakeEffectContext();
 			const FGameplayEffectSpecHandle SpecHandle = AbilitySystemInterface->GetAbilitySystemComponent()->MakeOutgoingSpec(DamageEffectClass, 1.f, ContextHandle);
 			bool bFound;
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Emerald, FString::Printf(TEXT("enemy health is %f"), GetAbilitySystemComponent()->GetGameplayAttributeValue(GetAttributeSet()->GetHealthAttribute(), bFound)));
 			AbilitySystemInterface->GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
+			const FGameplayEffectSpecHandle SpecHandle2 = GetAbilitySystemComponent()->MakeOutgoingSpec(OwnerEffectClass, 1.f, ContextHandle2);
+			GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle2.Data.Get());
 		}
 	}
 }

@@ -5,6 +5,7 @@
 
 #include "Character/GAttributeSet.h"
 #include "Components/GAbilitySystemComponent.h"
+#include "Components/WidgetComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 
@@ -20,6 +21,9 @@ AEnemy::AEnemy()
 	AttributeSet = CreateDefaultSubobject<UGAttributeSet>("AttributeSetG");
 	GetCharacterMovement()->MaxWalkSpeed = 500.f;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
+
+	HealthManaBar = CreateDefaultSubobject<UWidgetComponent>("HealthManaBar");
+	HealthManaBar->SetupAttachment(GetMesh());
 }
 
 // Called when the game starts or when spawned

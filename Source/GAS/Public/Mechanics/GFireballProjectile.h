@@ -27,9 +27,9 @@ protected:
 	void SpawnProjectile(const FTransform& SpawnTransform) const;
 
 private:
-	UPROPERTY(EditAnywhere, Category="Projectile|Spawn")
+	UPROPERTY(EditAnywhere, Category="GAS|Projectile|Spawn")
 	TSubclassOf<AActor> BurdenProjectileClass;
 
-	UPROPERTY(EditAnywhere, Category="Projectile|Spawn")
+	UPROPERTY(EditAnywhere, Category="GAS|Projectile|Spawn")
 	UParticleSystem* DestroyParticle;
 };

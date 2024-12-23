@@ -26,6 +26,6 @@ protected:
 		const FGameplayEventData* TriggerEventData = nullptr) override;
 
 private:
-	UPROPERTY(EditDefaultsOnly, Category="Ability|Sprint")
+	UPROPERTY(EditDefaultsOnly, Category="GAS|Sprint")
 	float SprintSpeed = 600.f;
 };

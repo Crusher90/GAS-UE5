@@ -18,6 +18,6 @@ protected:
 	virtual void TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
 
 public:
-	UPROPERTY(EditAnywhere, Category="Fields")
+	UPROPERTY(EditAnywhere, Category="GAS|Fields")
 	float MinDistance = 75.f;
 };

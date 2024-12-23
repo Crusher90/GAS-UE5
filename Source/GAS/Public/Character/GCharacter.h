@@ -34,16 +34,16 @@ public:
 	virtual void PossessedBy(AController* NewController) override;
 
 private:
-	UPROPERTY(VisibleAnywhere, Category="Properties|Camera")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Properties|Camera")
 	USpringArmComponent* SpringArm;
 
-	UPROPERTY(VisibleAnywhere, Category="Properties|Camera")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Properties|Camera")
 	UCameraComponent* Camera;
 
-	UPROPERTY(EditDefaultsOnly, Category="Properties|GameplayEffect")
+	UPROPERTY(EditDefaultsOnly, Category="GAS|Properties|GameplayEffect")
 	TSubclassOf<UGameplayEffect> DamageEffectClass;
 
 public:
-	UPROPERTY(VisibleAnywhere, Category="Properties|Weapon")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Properties|Weapon")
 	UBoxComponent* WeaponBoxCollision;
 };

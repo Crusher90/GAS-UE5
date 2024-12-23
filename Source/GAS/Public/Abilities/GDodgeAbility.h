@@ -25,6 +25,6 @@ protected:
 		const FGameplayEventData* TriggerEventData = nullptr) override;
 
 private:
-	UPROPERTY(EditDefaultsOnly, Category="Ability|Properties")
+	UPROPERTY(EditDefaultsOnly, Category="GAS|Properties")
 	float DodgeDistance = 5.f;
 };

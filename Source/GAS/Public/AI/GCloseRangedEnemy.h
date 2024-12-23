@@ -30,9 +30,9 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-	UPROPERTY(VisibleAnywhere, Category="Properties|Weapon")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Properties|Weapon")
 	UBoxComponent* LWeaponBoxCollision;
 
-	UPROPERTY(VisibleAnywhere, Category="Properties|Weapon")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Properties|Weapon")
 	UBoxComponent* RWeaponBoxCollision;
 };

@@ -24,31 +24,31 @@ protected:
 	virtual void BeginPlay() override;
 	
 private:
-	UPROPERTY(EditAnywhere, Category="Player|Inputs")
+	UPROPERTY(EditAnywhere, Category="GAS|Player|Inputs")
 	UInputMappingContext* MappingContext;
 	
-	UPROPERTY(EditAnywhere, Category="Player|Inputs")
+	UPROPERTY(EditAnywhere, Category="GAS|Player|Inputs")
 	UInputAction* MoveAction;
 	
-	UPROPERTY(EditAnywhere, Category="Player|Inputs")
+	UPROPERTY(EditAnywhere, Category="GAS|Player|Inputs")
 	UInputAction* LookAction;
 	
-	UPROPERTY(EditAnywhere, Category="Player|Inputs")
+	UPROPERTY(EditAnywhere, Category="GAS|Player|Inputs")
 	UInputAction* JumpAction;
 	
-	UPROPERTY(EditAnywhere, Category="Player|Inputs")
+	UPROPERTY(EditAnywhere, Category="GAS|Player|Inputs")
 	UInputAction* AttackAction;
 	
-	UPROPERTY(EditAnywhere, Category="Player|Inputs")
+	UPROPERTY(EditAnywhere, Category="GAS|Player|Inputs")
 	UInputAction* IncreaseSpeedAction;
 
-	UPROPERTY(EditAnywhere, Category="Player|Inputs")
+	UPROPERTY(EditAnywhere, Category="GAS|Player|Inputs")
 	UInputAction* DecreaseSpeedAction;
 
-	UPROPERTY(EditAnywhere, Category="Player|Inputs")
+	UPROPERTY(EditAnywhere, Category="GAS|Player|Inputs")
 	UInputAction* DodgeAction;
 
-	UPROPERTY(EditAnywhere, Category="Player|Inputs")
+	UPROPERTY(EditAnywhere, Category="GAS|Player|Inputs")
 	UInputAction* UltimateAction;
 
 protected:
@@ -63,9 +63,9 @@ protected:
 	void DecreaseSpeed();
 	
 public:
-	UPROPERTY(VisibleAnywhere, Category="Player")
+	UPROPERTY(VisibleAnywhere, Category="GAS|Player")
 	AGCharacter* MyCharacter;
 
-	UPROPERTY(EditAnywhere, Category="Player")
+	UPROPERTY(EditAnywhere, Category="GAS|Player")
 	float GameSensitivity = 45.f;
 };

@@ -17,6 +17,6 @@ class GAS_API UGTaskActivateAbilityByName : public UBTTaskNode
 public:
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 
-	UPROPERTY(EditAnywhere, Category="Ability")
+	UPROPERTY(EditAnywhere, Category="GAS|Ability")
 	FName AbilityName;
 };

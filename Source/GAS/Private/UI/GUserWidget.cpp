@@ -3,19 +3,17 @@
 
 #include "UI/GUserWidget.h"
 
-#include "Character/GAttributeSet.h"
-#include "Character/GPlayerState.h"
-#include "Components/GAbilitySystemComponent.h"
+#include "Character/GBaseCharacter.h"
 
 bool UGUserWidget::Initialize()
 {
 	if(!Super::Initialize())
 		return false;
-	PState = Cast<AGPlayerState>(GetOwningPlayerState());
-	if (PState)
+	BaseCharacter = Cast<AGBaseCharacter>(GetOwningPlayerPawn());
+	if (BaseCharacter)
 	{
-		ASComp = PState->AbilitySystemComponent;
-		ASet = PState->AttributeSet;
+		ASComp = BaseCharacter->AbilitySystemComp;
+		ASet = BaseCharacter->AttributeSet;
 	}
 	return true;
 }

@@ -29,13 +29,13 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	UPROPERTY(VisibleAnywhere, Category="AI|Properties")
+	UPROPERTY(VisibleAnywhere, Category="GAS|AI|Properties")
 	UAIPerceptionComponent* PerceptionComp;
 
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="AI|Properties")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="GAS|AI|Properties")
 	UBehaviorTreeComponent* BehaviorComp;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="AI|Properties")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="GAS|AI|Properties")
 	UBlackboardComponent* BlackboardComp;
 };

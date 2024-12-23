@@ -17,12 +17,12 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-	UPROPERTY(VisibleAnywhere, Category="UI|Widgets")
+	UPROPERTY(VisibleAnywhere, Category="GAS|UI|Widgets")
 	UUserWidget* GUserWidget;
 
-	UPROPERTY(VisibleAnywhere, Category="UI|Widgets")
+	UPROPERTY(VisibleAnywhere, Category="GAS|UI|Widgets")
 	UUserWidget* GameOverlay;
 	
-	UPROPERTY(EditAnywhere, Category="UI|Widgets")
+	UPROPERTY(EditAnywhere, Category="GAS|UI|Widgets")
 	TSubclassOf<UUserWidget> GameOverlayClass;
 };
