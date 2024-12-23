@@ -21,6 +21,11 @@ void UGGameOverlay::NativeConstruct()
 	}
 }
 
+bool UGGameOverlay::Initialize()
+{
+	return Super::Initialize();
+}
+
 void UGGameOverlay::HealthChanged(const FOnAttributeChangeData& Data)
 {
 	PBHealth->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxHealthAttribute()));

@@ -7,6 +7,7 @@
 #include "Components/GAbilitySystemComponent.h"
 #include "Components/WidgetComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "UI/GUserWidget.h"
 
 
 // Sets default values
@@ -47,6 +48,10 @@ void AEnemy::PossessedBy(AController* NewController)
 		if(InitAttributeGameplayEffect)
 		{
 			InitDefaultAttributes();
+			// if (UUserWidget* Widget = CreateWidget(GetWorld(), HealthManaBar->GetWidgetClass()))
+			// {
+			// 	HealthManaBar->SetWidget(Widget);
+			// }
 		}
 	}
 }

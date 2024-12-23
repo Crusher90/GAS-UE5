@@ -31,6 +31,7 @@ public:
 
 public:
 	virtual void NativeConstruct() override;
+	virtual bool Initialize() override;
 	
 	void HealthChanged(const FOnAttributeChangeData& Data);
 	void MaxHealthChanged(const FOnAttributeChangeData& Data);
