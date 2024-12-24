@@ -6,6 +6,8 @@
 #include "Character/GAttributeSet.h"
 #include "Components/GAbilitySystemComponent.h"
 #include "Components/ProgressBar.h"
+#include "Components/TextBlock.h"
+#include "Kismet/KismetMathLibrary.h"
 
 void UGGameOverlay::NativeConstruct()
 {
@@ -18,6 +20,8 @@ void UGGameOverlay::NativeConstruct()
 		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetMaxManaAttribute()).AddUObject(this, &ThisClass::MaxManaChanged);
 		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetStaminaAttribute()).AddUObject(this, &ThisClass::StaminaChanged);
 		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetMaxStaminaAttribute()).AddUObject(this, &ThisClass::MaxStaminaChanged);
+		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetExperienceAttribute()).AddUObject(this, &ThisClass::ExperienceChanged);
+		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetMaxExperienceAttribute()).AddUObject(this, &ThisClass::MaxExperienceChanged);
 	}
 }
 
@@ -58,6 +62,11 @@ void UGGameOverlay::MaxStaminaChanged(const FOnAttributeChangeData& Data)
 
 void UGGameOverlay::ExperienceChanged(const FOnAttributeChangeData& Data)
 {
+	if (Data.NewValue > ASComp->GetNumericAttribute(ASet->GetMaxExperienceAttribute()))
+	{
+		ASComp->SetNumericAttributeBase(ASet->GetExperienceAttribute(), 0.f);
+		TBExperience->SetText(FText::AsNumber(++ExperienceValue));
+	}
 	PBExperience->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxExperienceAttribute()));
 }
 

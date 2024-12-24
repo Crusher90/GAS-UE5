@@ -6,6 +6,7 @@
 #include "UI/GUserWidget.h"
 #include "GGameOverlay.generated.h"
 
+class UTextBlock;
 struct FOnAttributeChangeData;
 class UProgressBar;
 
@@ -28,6 +29,12 @@ public:
 
 	UPROPERTY(meta = (BindWidget))
 	UProgressBar* PBExperience;
+
+	UPROPERTY(meta = (BindWidget))
+	UTextBlock* TBExperience;
+
+	UPROPERTY()
+	int ExperienceValue = 1;
 
 public:
 	virtual void NativeConstruct() override;
