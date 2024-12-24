@@ -3,6 +3,7 @@
 
 #include "Abilities/GSprintAbility.h"
 
+#include "AbilitySystemComponent.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
@@ -14,8 +15,11 @@ void UGSprintAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 	// GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString("ActivateAbilitySprintAbility"));
 	if(const ACharacter* Character = Cast<ACharacter>(GetAvatarActorFromActorInfo()))
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("velocity: %f"), Character->GetVelocity().Size2D()));
+		// GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("velocity: %f"), Character->GetVelocity().Size2D()));
 		Character->GetCharacterMovement()->MaxWalkSpeed = SprintSpeed;
+		// const FGameplayEffectContextHandle ContextHandle = ActorInfo->AbilitySystemComponent->MakeEffectContext();
+		// const FGameplayEffectSpecHandle SpecHandle = ActorInfo->AbilitySystemComponent->MakeOutgoingSpec(GameplayEffectToApply, 1.f, ContextHandle);
+		// ActorInfo->AbilitySystemComponent->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data);
 		EndAbility(Handle, ActorInfo, ActivationInfo, true, false);
 	}
 }

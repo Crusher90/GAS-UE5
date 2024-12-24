@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Abilities/GameplayAbility.h"
-#include "GameFramework/CharacterMovementComponent.h"
 #include "GSprintAbility.generated.h"
 
 /**
@@ -28,4 +27,7 @@ protected:
 private:
 	UPROPERTY(EditDefaultsOnly, Category="GAS|Sprint")
 	float SprintSpeed = 600.f;
+
+	UPROPERTY(EditDefaultsOnly, Category="GAS|Sprint")
+	TSubclassOf<UGameplayEffect> GameplayEffectToApply;
 };

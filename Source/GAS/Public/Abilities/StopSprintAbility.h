@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Abilities/GameplayAbility.h"
-#include "GameFramework/CharacterMovementComponent.h"
 #include "StopSprintAbility.generated.h"
 
 /**
