@@ -5,6 +5,8 @@
 
 #include "Net/UnrealNetwork.h"
 #include "GameplayEffectExtension.h"
+#include "InputBehavior.h"
+#include "Character/GBaseCharacter.h"
 
 void UGAttributeSet::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
 {
@@ -22,6 +24,13 @@ void UGAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackD
 	Super::PostGameplayEffectExecute(Data);
 	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
 	{
+		if (GetHealth() == 0.f)
+		{
+			if (AGBaseCharacter* BaseChar = Cast<AGBaseCharacter>(Data.Target.GetAvatarActor()))
+			{
+				BaseChar->Death();
+			}
+		}
 		SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth()));
 	}
 	if (Data.EvaluatedData.Attribute == GetManaAttribute())

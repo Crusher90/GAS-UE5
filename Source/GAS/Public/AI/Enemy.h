@@ -31,4 +31,6 @@ public:
 
 	UPROPERTY(VisibleAnywhere, Category="GAS|HealthManaWidget")
 	UWidgetComponent* HealthManaBar;
+
+	virtual void Death() override;
 };

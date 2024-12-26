@@ -82,8 +82,14 @@ void AGCharacter::PossessedBy(AController* NewController)
 	}
 }
 
+void AGCharacter::Death()
+{
+	Super::Death();
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("%s death"), *GetName()));
+}
+
 void AGCharacter::OnWeaponOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+                                  UPrimitiveComponent* OtherComp, int OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherActor && OtherActor != this)
 	{

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
+#include "Abilities/GameplayAbilityTypes.h"
 #include "GBaseCharacter.generated.h"
 
 class UGAttributeSet;
@@ -29,6 +30,8 @@ public:
 	void GiveStartupAbilities();
 
 	void InitDefaultAttributes() const;
+
+	virtual void Death();
 
 public:
 	UPROPERTY(VisibleAnywhere, Category="GAS|Ability|Properties")

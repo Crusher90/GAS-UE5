@@ -43,3 +43,15 @@ void AGBaseCharacter::InitDefaultAttributes() const
 		ContextHandle);
 	AbilitySystemComp->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
 }
+
+void AGBaseCharacter::Death()
+{
+	// FGameplayAbilitySpec Spec = GetAbilitySystemComponent()->BuildAbilitySpecFromClass(*StartupAbilities.Find(FName("DeathAbility")), 1.f);
+	// GetAbilitySystemComponent()->GiveAbilityAndActivateOnce(Spec);
+	GetMesh()->SetSimulatePhysics(true);
+	GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECR_Ignore);
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Block);
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Block);
+	GetController()->UnPossess();
+	SetLifeSpan(5.f);
+}

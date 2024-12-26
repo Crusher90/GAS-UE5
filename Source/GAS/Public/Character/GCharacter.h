@@ -33,6 +33,8 @@ public:
 
 	virtual void PossessedBy(AController* NewController) override;
 
+	virtual void Death() override;
+
 private:
 	UPROPERTY(VisibleAnywhere, Category="GAS|Properties|Camera")
 	USpringArmComponent* SpringArm;
