@@ -40,6 +40,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category="GAS|Projectile|Movement")
 	TSubclassOf<UGameplayEffect> OverlapEffect;
 
+	UPROPERTY(EditDefaultsOnly, Category="GAS|Projectile|HitCameraShake")
+	TSubclassOf<UCameraShakeBase> CameraShake;
+
 protected:
 	UFUNCTION()
 	virtual void OnProjectileOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
