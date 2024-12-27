@@ -48,4 +48,7 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category="GAS|Ability|StartupEffect")
 	TSubclassOf<UGameplayEffect> OwnerEffectClass;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="GAS|Ability|Montage")
+	UAnimMontage* HitReactMontage;
 };
