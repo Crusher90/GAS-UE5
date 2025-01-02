@@ -3,8 +3,10 @@
 
 #include "AI/GAIController.h"
 
+#include "AI/Enemy.h"
 #include "BehaviorTree/BehaviorTreeComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "Components/WidgetComponent.h"
 #include "Interface/GPlayerInterface.h"
 #include "Perception/AIPerceptionComponent.h"
 
@@ -26,6 +28,10 @@ void AGAIController::PerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 	{
 		GetBlackboardComponent()->SetValueAsObject(FName("TargetActor"), Actor);
 		GetBlackboardComponent()->SetValueAsBool(FName("IsAgro"), true);
+		if (Enemy)
+		{
+			Enemy->HealthManaBar->SetVisibility(true);
+		}
 	}
 }
 
@@ -35,6 +41,10 @@ void AGAIController::PerceptionForgotten(AActor* Actor)
 	{
 		GetBlackboardComponent()->SetValueAsObject(FName("TargetActor"), nullptr);
 		GetBlackboardComponent()->SetValueAsBool(FName("IsAgro"), false);
+		if (Enemy)
+		{
+			Enemy->HealthManaBar->SetVisibility(false);
+		}
 		BehaviorComp->RestartLogic();
 	}
 }
@@ -45,4 +55,5 @@ void AGAIController::BeginPlay()
 	Super::BeginPlay();
 	PerceptionComp->OnTargetPerceptionUpdated.AddDynamic(this, &ThisClass::PerceptionUpdated);
 	PerceptionComp->OnTargetPerceptionForgotten.AddDynamic(this, &ThisClass::PerceptionForgotten);
+	Enemy = Cast<AEnemy>(GetPawn());
 }

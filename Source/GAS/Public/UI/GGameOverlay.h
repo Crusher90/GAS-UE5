@@ -19,19 +19,19 @@ class GAS_API UGGameOverlay : public UGUserWidget
 	GENERATED_BODY()
 public:
 	UPROPERTY(meta = (BindWidget))
-	UProgressBar* PBHealth;
-
-	UPROPERTY(meta = (BindWidget))
-	UProgressBar* PBMana;
-
-	UPROPERTY(meta = (BindWidget))
-	UProgressBar* PBStamina;
-
-	UPROPERTY(meta = (BindWidget))
 	UProgressBar* PBExperience;
 
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* TBExperience;
+
+	UPROPERTY(meta = (BindWidget))
+	UTextBlock* TBHealth;
+
+	UPROPERTY(meta = (BindWidget))
+	UTextBlock* TBStamina;
+
+	UPROPERTY(meta = (BindWidget))
+	UTextBlock* TBMana;
 
 	UPROPERTY()
 	int ExperienceValue = 1;
@@ -41,11 +41,7 @@ public:
 	virtual bool Initialize() override;
 	
 	void HealthChanged(const FOnAttributeChangeData& Data);
-	void MaxHealthChanged(const FOnAttributeChangeData& Data);
 	void ManaChanged(const FOnAttributeChangeData& Data);
-	void MaxManaChanged(const FOnAttributeChangeData& Data);
 	void StaminaChanged(const FOnAttributeChangeData& Data);
-	void MaxStaminaChanged(const FOnAttributeChangeData& Data);
 	void ExperienceChanged(const FOnAttributeChangeData& Data);
-	void MaxExperienceChanged(const FOnAttributeChangeData& Data);
 };

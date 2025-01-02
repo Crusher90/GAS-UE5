@@ -35,6 +35,10 @@ void AEnemy::BeginPlay()
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("attribute set is %s"), *AttributeSet->GetName()));
 	}
+	if (HealthManaBar)
+	{
+		HealthManaBar->SetVisibility(false);
+	}
 }
 
 void AEnemy::PossessedBy(AController* NewController)

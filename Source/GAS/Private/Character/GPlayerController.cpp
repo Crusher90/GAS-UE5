@@ -88,7 +88,10 @@ void AGPlayerController::Attack()
 
 void AGPlayerController::Dodge()
 {
-	MyCharacter->GetAbilitySystemComponent()->TryActivateAbilityByClass(*MyCharacter->StartupAbilities.Find(FName("DodgeAbility")));
+	if (MyCharacter->GetVelocity().Size2D() > 0.f)
+	{
+		MyCharacter->GetAbilitySystemComponent()->TryActivateAbilityByClass(*MyCharacter->StartupAbilities.Find(FName("DodgeAbility")));
+	}
 }
 
 void AGPlayerController::Ultimate()

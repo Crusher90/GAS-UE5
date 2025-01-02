@@ -7,6 +7,7 @@
 #include "Runtime/AIModule/Classes/AIController.h"
 #include "GAIController.generated.h"
 
+class AEnemy;
 class UBehaviorTreeComponent;
 
 UCLASS()
@@ -31,6 +32,9 @@ protected:
 private:
 	UPROPERTY(VisibleAnywhere, Category="GAS|AI|Properties")
 	UAIPerceptionComponent* PerceptionComp;
+
+	UPROPERTY()
+	AEnemy* Enemy;
 
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="GAS|AI|Properties")

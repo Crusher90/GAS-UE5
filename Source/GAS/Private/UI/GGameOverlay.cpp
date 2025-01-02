@@ -7,7 +7,6 @@
 #include "Components/GAbilitySystemComponent.h"
 #include "Components/ProgressBar.h"
 #include "Components/TextBlock.h"
-#include "Kismet/KismetMathLibrary.h"
 
 void UGGameOverlay::NativeConstruct()
 {
@@ -15,13 +14,9 @@ void UGGameOverlay::NativeConstruct()
 	if(ASComp)
 	{
 		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetHealthAttribute()).AddUObject(this, &ThisClass::HealthChanged);
-		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetMaxHealthAttribute()).AddUObject(this, &ThisClass::MaxHealthChanged);
 		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetManaAttribute()).AddUObject(this, &ThisClass::ManaChanged);
-		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetMaxManaAttribute()).AddUObject(this, &ThisClass::MaxManaChanged);
 		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetStaminaAttribute()).AddUObject(this, &ThisClass::StaminaChanged);
-		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetMaxStaminaAttribute()).AddUObject(this, &ThisClass::MaxStaminaChanged);
 		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetExperienceAttribute()).AddUObject(this, &ThisClass::ExperienceChanged);
-		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetMaxExperienceAttribute()).AddUObject(this, &ThisClass::MaxExperienceChanged);
 	}
 }
 
@@ -32,32 +27,26 @@ bool UGGameOverlay::Initialize()
 
 void UGGameOverlay::HealthChanged(const FOnAttributeChangeData& Data)
 {
-	PBHealth->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxHealthAttribute()));
-}
-
-void UGGameOverlay::MaxHealthChanged(const FOnAttributeChangeData& Data)
-{
-	PBHealth->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxHealthAttribute()));
+	if (TBHealth)
+	{
+		TBHealth->SetText(FText::AsNumber(Data.NewValue));
+	}
 }
 
 void UGGameOverlay::ManaChanged(const FOnAttributeChangeData& Data)
 {
-	PBMana->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxManaAttribute()));
-}
-
-void UGGameOverlay::MaxManaChanged(const FOnAttributeChangeData& Data)
-{
-	PBMana->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxManaAttribute()));
+	if (TBMana)
+	{
+		TBMana->SetText(FText::AsNumber(Data.NewValue));
+	}
 }
 
 void UGGameOverlay::StaminaChanged(const FOnAttributeChangeData& Data)
 {
-	PBStamina->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxStaminaAttribute()));
-}
-
-void UGGameOverlay::MaxStaminaChanged(const FOnAttributeChangeData& Data)
-{
-	PBStamina->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxStaminaAttribute()));
+	if (TBStamina)
+	{
+		TBStamina->SetText(FText::AsNumber(Data.NewValue));
+	}
 }
 
 void UGGameOverlay::ExperienceChanged(const FOnAttributeChangeData& Data)
@@ -67,10 +56,5 @@ void UGGameOverlay::ExperienceChanged(const FOnAttributeChangeData& Data)
 		ASComp->SetNumericAttributeBase(ASet->GetExperienceAttribute(), 0.f);
 		TBExperience->SetText(FText::AsNumber(++ExperienceValue));
 	}
-	PBExperience->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxExperienceAttribute()));
-}
-
-void UGGameOverlay::MaxExperienceChanged(const FOnAttributeChangeData& Data)
-{
 	PBExperience->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxExperienceAttribute()));
 }
