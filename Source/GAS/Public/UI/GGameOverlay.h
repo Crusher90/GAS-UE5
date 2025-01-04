@@ -33,9 +33,6 @@ public:
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* TBMana;
 
-	UPROPERTY()
-	int ExperienceValue = 1;
-
 public:
 	virtual void NativeConstruct() override;
 	virtual bool Initialize() override;
@@ -43,5 +40,6 @@ public:
 	void HealthChanged(const FOnAttributeChangeData& Data);
 	void ManaChanged(const FOnAttributeChangeData& Data);
 	void StaminaChanged(const FOnAttributeChangeData& Data);
-	void ExperienceChanged(const FOnAttributeChangeData& Data);
+	void OnLevelChanged(const float LevelToSet);
+	void OnExperienceChanged(const float ExperienceToSet);
 };

@@ -25,6 +25,10 @@ protected:
 	void OnWeaponOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 		int OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 	
+	void OnLevelChanged(const FOnAttributeChangeData& Data);
+
+	void OnExperienceChanged(const FOnAttributeChangeData& Data);
+	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
@@ -44,6 +48,9 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category="GAS|Properties|GameplayEffect")
 	TSubclassOf<UGameplayEffect> DamageEffectClass;
+
+	UPROPERTY(EditDefaultsOnly, Category="GAS|Properties|GameplayEffect")
+	TSubclassOf<UGameplayEffect> LevelUPEffectClass;
 
 public:
 	UPROPERTY(VisibleAnywhere, Category="GAS|Properties|Weapon")

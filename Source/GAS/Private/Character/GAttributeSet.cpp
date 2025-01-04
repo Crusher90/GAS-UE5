@@ -5,7 +5,6 @@
 
 #include "Net/UnrealNetwork.h"
 #include "GameplayEffectExtension.h"
-#include "InputBehavior.h"
 #include "Character/GBaseCharacter.h"
 
 void UGAttributeSet::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
@@ -17,6 +16,7 @@ void UGAttributeSet::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>&
 	DOREPLIFETIME_CONDITION_NOTIFY(ThisClass, MaxMana, COND_None, REPNOTIFY_Always)
 	DOREPLIFETIME_CONDITION_NOTIFY(ThisClass, Stamina, COND_None, REPNOTIFY_Always)
 	DOREPLIFETIME_CONDITION_NOTIFY(ThisClass, MaxStamina, COND_None, REPNOTIFY_Always)
+	DOREPLIFETIME_CONDITION_NOTIFY(ThisClass, Level, COND_None, REPNOTIFY_Always)
 }
 
 void UGAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data)
@@ -85,4 +85,9 @@ void UGAttributeSet::OnRep_Experience(const FGameplayAttributeData& OldExperienc
 void UGAttributeSet::OnRep_MaxExperience(const FGameplayAttributeData& OldMaxExperience) const
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(ThisClass, MaxExperience, OldMaxExperience);
+}
+
+void UGAttributeSet::OnRep_Level(const FGameplayAttributeData& OldLevel) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(ThisClass, Level, OldLevel);
 }

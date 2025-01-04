@@ -74,4 +74,14 @@ public:
 	ATTRIBUTE_ACCESSORS(UGAttributeSet, MaxExperience);
 	UFUNCTION()
 	void OnRep_MaxExperience(const FGameplayAttributeData& OldMaxExperience) const;
+
+	UPROPERTY(VisibleAnywhere, ReplicatedUsing="OnRep_Level", Category="GAS|Attributes|Data")
+	FGameplayAttributeData Level;
+	ATTRIBUTE_ACCESSORS(UGAttributeSet, Level);
+	UFUNCTION()
+	void OnRep_Level(const FGameplayAttributeData& OldLevel) const;
+
+	UPROPERTY(VisibleAnywhere, Category="GAS|Attributes|Data")
+	FGameplayAttributeData Damage;
+	ATTRIBUTE_ACCESSORS(UGAttributeSet, Damage);
 };

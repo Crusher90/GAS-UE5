@@ -4,6 +4,7 @@
 #include "Character/GCharacter.h"
 
 #include "Camera/CameraComponent.h"
+#include "Character/GAttributeSet.h"
 #include "Character/GPlayerState.h"
 #include "Components/BoxComponent.h"
 #include "Components/GAbilitySystemComponent.h"
@@ -44,6 +45,8 @@ void AGCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	WeaponBoxCollision->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::OnWeaponOverlap);
+	GetAbilitySystemComponent()->GetGameplayAttributeValueChangeDelegate(AttributeSet->GetLevelAttribute()).AddUObject(this, &ThisClass::OnLevelChanged);
+	GetAbilitySystemComponent()->GetGameplayAttributeValueChangeDelegate(AttributeSet->GetExperienceAttribute()).AddUObject(this, &ThisClass::OnExperienceChanged);
 }
 
 void AGCharacter::OnRep_PlayerState()
@@ -52,6 +55,7 @@ void AGCharacter::OnRep_PlayerState()
 	if(AGPlayerState* PS = GetPlayerState<AGPlayerState>())
 	{
 		AbilitySystemComp = PS->AbilitySystemComponent;
+		AttributeSet = PS->AttributeSet;
 		AbilitySystemComp->InitAbilityActorInfo(PS, this);
 		if (HasAuthority())
 		{
@@ -70,6 +74,7 @@ void AGCharacter::PossessedBy(AController* NewController)
 	if(AGPlayerState* PS = GetPlayerState<AGPlayerState>())
 	{
 		AbilitySystemComp = PS->AbilitySystemComponent;
+		AttributeSet = PS->AttributeSet;
 		AbilitySystemComp->InitAbilityActorInfo(PS, this);
 		if (HasAuthority())
 		{
@@ -104,4 +109,25 @@ void AGCharacter::OnWeaponOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 			GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle2.Data.Get());
 		}
 	}
+}
+
+void AGCharacter::OnLevelChanged(const FOnAttributeChangeData& Data)
+{
+	if (LevelUPEffectClass)
+	{
+		const FGameplayEffectContextHandle Handle = GetAbilitySystemComponent()->MakeEffectContext();
+		const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(LevelUPEffectClass, 1.f, Handle);
+		GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
+		AbilitySystemComp->OnUILevelChanged.Broadcast(Data.NewValue);
+	}
+}
+
+void AGCharacter::OnExperienceChanged(const FOnAttributeChangeData& Data)
+{
+	if (Data.NewValue >= GetAttributeSet()->GetMaxExperience())
+	{
+		GetAttributeSet()->SetExperience(0.f);
+		GetAttributeSet()->SetLevel(AttributeSet->GetLevel() + 1);
+	}
+	AbilitySystemComp->OnUIExperienceChanged.Broadcast(Data.NewValue);
 }

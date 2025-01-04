@@ -16,7 +16,8 @@ void UGGameOverlay::NativeConstruct()
 		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetHealthAttribute()).AddUObject(this, &ThisClass::HealthChanged);
 		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetManaAttribute()).AddUObject(this, &ThisClass::ManaChanged);
 		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetStaminaAttribute()).AddUObject(this, &ThisClass::StaminaChanged);
-		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetExperienceAttribute()).AddUObject(this, &ThisClass::ExperienceChanged);
+		ASComp->OnUILevelChanged.AddUObject(this, &ThisClass::OnLevelChanged);
+		ASComp->OnUIExperienceChanged.AddUObject(this, &ThisClass::OnExperienceChanged);
 	}
 }
 
@@ -49,12 +50,12 @@ void UGGameOverlay::StaminaChanged(const FOnAttributeChangeData& Data)
 	}
 }
 
-void UGGameOverlay::ExperienceChanged(const FOnAttributeChangeData& Data)
+void UGGameOverlay::OnLevelChanged(const float LevelToSet)
 {
-	if (Data.NewValue > ASComp->GetNumericAttribute(ASet->GetMaxExperienceAttribute()))
-	{
-		ASComp->SetNumericAttributeBase(ASet->GetExperienceAttribute(), 0.f);
-		TBExperience->SetText(FText::AsNumber(++ExperienceValue));
-	}
-	PBExperience->SetPercent(Data.NewValue/ASComp->GetNumericAttribute(ASet->GetMaxExperienceAttribute()));
+	TBExperience->SetText(FText::AsNumber(LevelToSet));
+}
+
+void UGGameOverlay::OnExperienceChanged(const float ExperienceToSet)
+{
+	PBExperience->SetPercent(ExperienceToSet/ASComp->GetNumericAttribute(ASet->GetMaxExperienceAttribute()));
 }
