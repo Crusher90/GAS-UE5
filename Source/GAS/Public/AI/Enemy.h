@@ -6,6 +6,7 @@
 #include "Character/GBaseCharacter.h"
 #include "Enemy.generated.h"
 
+class UGEnemyWidget;
 class UWidgetComponent;
 
 UCLASS()
@@ -18,6 +19,10 @@ public:
 	AEnemy();
 
 protected:
+	void OnEnemyHealthChanged(const FOnAttributeChangeData& OnAttributeChangeData);
+
+	void OnEnemyManaChanged(const FOnAttributeChangeData& OnAttributeChangeData);
+	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
@@ -30,7 +35,10 @@ public:
 	TSubclassOf<UGameplayEffect> DamageEffectClass;
 
 	UPROPERTY(VisibleAnywhere, Category="GAS|HealthManaWidget")
-	UWidgetComponent* HealthManaBar;
+	UWidgetComponent* HealthManaText;
 
 	virtual void Death() override;
+
+	UPROPERTY(VisibleAnywhere, Category="GAS|HealthManaWidget")
+	const UGEnemyWidget* Widget;
 };

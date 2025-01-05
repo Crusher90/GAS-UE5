@@ -128,6 +128,7 @@ void AGCharacter::OnExperienceChanged(const FOnAttributeChangeData& Data)
 	{
 		GetAttributeSet()->SetExperience(0.f);
 		GetAttributeSet()->SetLevel(AttributeSet->GetLevel() + 1);
+		//@todo apply gameplay effect to do this
 	}
 	AbilitySystemComp->OnUIExperienceChanged.Broadcast(Data.NewValue);
 }

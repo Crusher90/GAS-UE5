@@ -41,6 +41,7 @@ void UGAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackD
 	// {
 	// 	SetStamina(FMath::Clamp(GetStamina(), 0.f, GetMaxStamina()));
 	// }
+	//@todo set max health to 500, and set each attribute max value to something
 	if (Data.EvaluatedData.Attribute == GetExperienceAttribute())
 	{
 		SetExperience(FMath::Clamp(GetExperience(), 0.f, GetMaxExperience()));

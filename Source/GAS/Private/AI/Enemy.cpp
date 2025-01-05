@@ -5,8 +5,10 @@
 
 #include "Character/GAttributeSet.h"
 #include "Components/GAbilitySystemComponent.h"
+#include "Components/TextBlock.h"
 #include "Components/WidgetComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "UI/GEnemyWidget.h"
 
 
 // Sets default values
@@ -22,8 +24,8 @@ AEnemy::AEnemy()
 	GetCharacterMovement()->MaxWalkSpeed = 500.f;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 
-	HealthManaBar = CreateDefaultSubobject<UWidgetComponent>("HealthManaBar");
-	HealthManaBar->SetupAttachment(GetMesh());
+	HealthManaText = CreateDefaultSubobject<UWidgetComponent>("HealthManaText");
+	HealthManaText->SetupAttachment(GetMesh());
 }
 
 // Called when the game starts or when spawned
@@ -34,10 +36,13 @@ void AEnemy::BeginPlay()
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("attribute set is %s"), *AttributeSet->GetName()));
 	}
-	if (HealthManaBar)
+	if (HealthManaText)
 	{
-		HealthManaBar->SetVisibility(false);
+		HealthManaText->SetVisibility(true);
 	}
+	GetAbilitySystemComponent()->GetGameplayAttributeValueChangeDelegate(GetAttributeSet()->GetHealthAttribute()).AddUObject(this, &ThisClass::OnEnemyHealthChanged);
+	GetAbilitySystemComponent()->GetGameplayAttributeValueChangeDelegate(GetAttributeSet()->GetManaAttribute()).AddUObject(this, &ThisClass::OnEnemyManaChanged);
+	Widget = Cast<UGEnemyWidget>(HealthManaText->GetWidget());
 }
 
 void AEnemy::PossessedBy(AController* NewController)
@@ -51,10 +56,6 @@ void AEnemy::PossessedBy(AController* NewController)
 		if(InitAttributeGameplayEffect)
 		{
 			InitDefaultAttributes();
-			// if (UUserWidget* Widget = CreateWidget(GetWorld(), HealthManaBar->GetWidgetClass()))
-			// {
-			// 	HealthManaBar->SetWidget(Widget);
-			// }
 		}
 	}
 }
@@ -69,4 +70,20 @@ void AEnemy::Death()
 	GetController()->StopMovement();
 	Super::Death();
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("%s death"), *GetName()));
+}
+
+void AEnemy::OnEnemyHealthChanged(const FOnAttributeChangeData& OnAttributeChangeData)
+{
+	if (Widget)
+	{
+		Widget->TBHealth->SetText(FText::AsNumber(OnAttributeChangeData.NewValue));
+	}
+}
+
+void AEnemy::OnEnemyManaChanged(const FOnAttributeChangeData& OnAttributeChangeData)
+{
+	if (Widget)
+	{
+		Widget->TBMana->SetText(FText::AsNumber(OnAttributeChangeData.NewValue));
+	}
 }

@@ -30,7 +30,7 @@ void AGAIController::PerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 		GetBlackboardComponent()->SetValueAsBool(FName("IsAgro"), true);
 		if (Enemy)
 		{
-			Enemy->HealthManaBar->SetVisibility(true);
+			Enemy->HealthManaText->SetVisibility(true);
 		}
 	}
 }
@@ -43,7 +43,7 @@ void AGAIController::PerceptionForgotten(AActor* Actor)
 		GetBlackboardComponent()->SetValueAsBool(FName("IsAgro"), false);
 		if (Enemy)
 		{
-			Enemy->HealthManaBar->SetVisibility(false);
+			Enemy->HealthManaText->SetVisibility(false);
 		}
 		BehaviorComp->RestartLogic();
 	}
