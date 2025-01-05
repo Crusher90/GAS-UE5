@@ -101,11 +101,11 @@ void AGCharacter::OnWeaponOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 	{
 		if (const IAbilitySystemInterface* AbilitySystemInterface = Cast<IAbilitySystemInterface>(OtherActor))
 		{
-			const FGameplayEffectContextHandle ContextHandle = AbilitySystemInterface->GetAbilitySystemComponent()->MakeEffectContext();
-			const FGameplayEffectContextHandle ContextHandle2 = GetAbilitySystemComponent()->MakeEffectContext();
-			const FGameplayEffectSpecHandle SpecHandle = AbilitySystemInterface->GetAbilitySystemComponent()->MakeOutgoingSpec(DamageEffectClass, 1.f, ContextHandle);
-			AbilitySystemInterface->GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
-			const FGameplayEffectSpecHandle SpecHandle2 = GetAbilitySystemComponent()->MakeOutgoingSpec(OwnerEffectClass, 1.f, ContextHandle2);
+			const FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
+			const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(DamageEffectClass, 1.f, ContextHandle);
+			GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), AbilitySystemInterface->GetAbilitySystemComponent());
+			// const FGameplayEffectContextHandle ContextHandle2 = GetAbilitySystemComponent()->MakeEffectContext();
+			const FGameplayEffectSpecHandle SpecHandle2 = GetAbilitySystemComponent()->MakeOutgoingSpec(OwnerEffectClass, 1.f, ContextHandle);
 			GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle2.Data.Get());
 		}
 	}

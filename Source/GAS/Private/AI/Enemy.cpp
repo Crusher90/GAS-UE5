@@ -7,7 +7,6 @@
 #include "Components/GAbilitySystemComponent.h"
 #include "Components/WidgetComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "UI/GUserWidget.h"
 
 
 // Sets default values

@@ -31,16 +31,16 @@ void UGAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackD
 				BaseChar->Death();
 			}
 		}
-		SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth()));
+		// SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth()));
 	}
-	if (Data.EvaluatedData.Attribute == GetManaAttribute())
-	{
-		SetMana(FMath::Clamp(GetMana(), 0.f, GetMaxMana()));
-	}
-	if (Data.EvaluatedData.Attribute == GetStaminaAttribute())
-	{
-		SetStamina(FMath::Clamp(GetStamina(), 0.f, GetMaxStamina()));
-	}
+	// if (Data.EvaluatedData.Attribute == GetManaAttribute())
+	// {
+	// 	SetMana(FMath::Clamp(GetMana(), 0.f, GetMaxMana()));
+	// }
+	// if (Data.EvaluatedData.Attribute == GetStaminaAttribute())
+	// {
+	// 	SetStamina(FMath::Clamp(GetStamina(), 0.f, GetMaxStamina()));
+	// }
 	if (Data.EvaluatedData.Attribute == GetExperienceAttribute())
 	{
 		SetExperience(FMath::Clamp(GetExperience(), 0.f, GetMaxExperience()));
