@@ -13,7 +13,7 @@ void UGServiceCheckDistance::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* 
 	{
 		if (const ULocalPlayer* LocalPlayer = World->GetFirstLocalPlayerFromController())
 		{
-			if (LocalPlayer->GetPlayerController(GetWorld()) && LocalPlayer->GetPlayerController(GetWorld())->GetPawn())
+			if (LocalPlayer->GetPlayerController(GetWorld()) && LocalPlayer->GetPlayerController(GetWorld())->GetPawn() && OwnerComp.GetAIOwner()->GetPawn())
 			{
 				// GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("Player is %s"), *LocalPlayer->GetPlayerController(GetWorld())->GetPawn()->GetName()));
 				const FVector PlayerLocation = LocalPlayer->GetPlayerController(GetWorld())->GetPawn()->GetActorLocation();

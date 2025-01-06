@@ -24,6 +24,7 @@ void UGAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackD
 	Super::PostGameplayEffectExecute(Data);
 	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
 	{
+		SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth()));
 		if (GetHealth() == 0.f)
 		{
 			if (AGBaseCharacter* BaseChar = Cast<AGBaseCharacter>(Data.Target.GetAvatarActor()))
@@ -31,21 +32,19 @@ void UGAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackD
 				BaseChar->Death();
 			}
 		}
-		// SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth()));
 	}
-	// if (Data.EvaluatedData.Attribute == GetManaAttribute())
-	// {
-	// 	SetMana(FMath::Clamp(GetMana(), 0.f, GetMaxMana()));
-	// }
-	// if (Data.EvaluatedData.Attribute == GetStaminaAttribute())
-	// {
-	// 	SetStamina(FMath::Clamp(GetStamina(), 0.f, GetMaxStamina()));
-	// }
-	//@todo set max health to 500, and set each attribute max value to something
-	if (Data.EvaluatedData.Attribute == GetExperienceAttribute())
+	if (Data.EvaluatedData.Attribute == GetManaAttribute())
 	{
-		SetExperience(FMath::Clamp(GetExperience(), 0.f, GetMaxExperience()));
+		SetMana(FMath::Clamp(GetMana(), 0.f, GetMaxMana()));
 	}
+	if (Data.EvaluatedData.Attribute == GetStaminaAttribute())
+	{
+		SetStamina(FMath::Clamp(GetStamina(), 0.f, GetMaxStamina()));
+	}
+	// if (Data.EvaluatedData.Attribute == GetExperienceAttribute())
+	// {
+	// 	SetExperience(FMath::Clamp(GetExperience(), 0.f, GetMaxExperience()));
+	// }
 }
 
 void UGAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealth) const

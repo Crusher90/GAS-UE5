@@ -38,11 +38,12 @@ void AEnemy::BeginPlay()
 	}
 	if (HealthManaText)
 	{
-		HealthManaText->SetVisibility(true);
+		HealthManaText->SetVisibility(false);
 	}
 	GetAbilitySystemComponent()->GetGameplayAttributeValueChangeDelegate(GetAttributeSet()->GetHealthAttribute()).AddUObject(this, &ThisClass::OnEnemyHealthChanged);
 	GetAbilitySystemComponent()->GetGameplayAttributeValueChangeDelegate(GetAttributeSet()->GetManaAttribute()).AddUObject(this, &ThisClass::OnEnemyManaChanged);
 	Widget = Cast<UGEnemyWidget>(HealthManaText->GetWidget());
+	EnemyLocation = GetActorLocation();
 }
 
 void AEnemy::PossessedBy(AController* NewController)

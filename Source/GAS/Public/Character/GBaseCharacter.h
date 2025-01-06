@@ -43,7 +43,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category="GAS|Ability|StartupAbilities")
 	TMap<FName, TSubclassOf<UGameplayAbility>> StartupAbilities;
 
-	UPROPERTY(EditDefaultsOnly, Category="GAS|Ability|StartupEffect")
+	UPROPERTY(EditAnywhere, Category="GAS|Ability|StartupEffect")
 	TSubclassOf<UGameplayEffect> InitAttributeGameplayEffect;
 
 	UPROPERTY(EditDefaultsOnly, Category="GAS|Ability|StartupEffect")

@@ -37,6 +37,9 @@ public:
 	UPROPERTY(VisibleAnywhere, Category="GAS|HealthManaWidget")
 	UWidgetComponent* HealthManaText;
 
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadWrite, Category="GAS|Field")
+	FVector EnemyLocation;
+
 	virtual void Death() override;
 
 	UPROPERTY(VisibleAnywhere, Category="GAS|HealthManaWidget")
