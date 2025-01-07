@@ -68,7 +68,7 @@ FRotator AEnemy::GetViewRotation() const
 
 void AEnemy::Death()
 {
-	GetController()->StopMovement();
+	// GetController()->StopMovement();
 	Super::Death();
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("%s death"), *GetName()));
 }

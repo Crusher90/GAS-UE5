@@ -52,6 +52,6 @@ void AGBaseCharacter::Death()
 	GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECR_Ignore);
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Block);
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Block);
-	GetController()->UnPossess();
+	// GetController()->UnPossess();
 	SetLifeSpan(5.f);
 }
