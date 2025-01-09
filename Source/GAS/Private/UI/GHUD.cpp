@@ -3,6 +3,7 @@
 
 #include "UI/GHUD.h"
 
+#include "RayTracingInstanceBufferUtil.h"
 #include "Blueprint/UserWidget.h"
 #include "UI/GUserWidget.h"
 
@@ -18,5 +19,11 @@ void AGHUD::BeginPlay()
 	if (GameOverlay)
 	{
 		GameOverlay->AddToViewport();
+	}
+	PauseMenu = CreateWidget(GetOwningPlayerController(), PauseMenuClass);
+	if (PauseMenuClass)
+	{
+		PauseMenu->AddToViewport();
+		PauseMenu->SetVisibility(ESlateVisibility::Hidden);
 	}
 }

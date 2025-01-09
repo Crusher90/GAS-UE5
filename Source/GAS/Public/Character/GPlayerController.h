@@ -51,6 +51,9 @@ private:
 	UPROPERTY(EditAnywhere, Category="GAS|Player|Inputs")
 	UInputAction* UltimateAction;
 
+	UPROPERTY(EditAnywhere, Category="GAS|Player|Inputs")
+	UInputAction* PauseMenuAction;
+
 protected:
 	void Move(const FInputActionValue& InputActionValue);
 	void Look(const FInputActionValue& InputActionValue);
@@ -61,6 +64,7 @@ protected:
 	void Ultimate();		// consume mana
 	void IncreaseSpeed();
 	void DecreaseSpeed();
+	void DisplayPauseMenu();
 	
 public:
 	UPROPERTY(VisibleAnywhere, Category="GAS|Player")

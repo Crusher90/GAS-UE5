@@ -42,7 +42,6 @@ void AGBaseCharacter::InitDefaultAttributes() const
 	const FGameplayEffectSpecHandle SpecHandle = AbilitySystemComp->MakeOutgoingSpec(InitAttributeGameplayEffect, 1.f,
 		ContextHandle);
 	AbilitySystemComp->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
-	// GetAttributeSet()->SetLevel(StartupCharacterLevel);
 }
 
 void AGBaseCharacter::Death()

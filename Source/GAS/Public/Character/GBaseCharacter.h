@@ -51,7 +51,4 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="GAS|Ability|Montage")
 	UAnimMontage* HitReactMontage;
-
-	UPROPERTY(EditAnywhere, Category="GAS|Ability")
-	float StartupCharacterLevel = 0.f;
 };

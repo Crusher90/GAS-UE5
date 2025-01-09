@@ -35,7 +35,7 @@ void AGCloseRangedEnemy::WeaponLOverlap(UPrimitiveComponent* OverlappedComponent
 			const FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
 			const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(DamageEffectClass,
 				1.f, ContextHandle);
-			AbilitySystemInterface->GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(),
+			GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(),
 				AbilitySystemInterface->GetAbilitySystemComponent());
 			
 			const FGameplayEffectContextHandle ContextHandle2 = GetAbilitySystemComponent()->MakeEffectContext();

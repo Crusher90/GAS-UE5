@@ -22,7 +22,13 @@ public:
 
 	UPROPERTY(VisibleAnywhere, Category="GAS|UI|Widgets")
 	UUserWidget* GameOverlay;
+
+	UPROPERTY(VisibleAnywhere, Category="GAS|UI|Widgets")
+	UUserWidget* PauseMenu;
 	
 	UPROPERTY(EditAnywhere, Category="GAS|UI|Widgets")
 	TSubclassOf<UUserWidget> GameOverlayClass;
+
+	UPROPERTY(EditAnywhere, Category="GAS|UI|Widgets")
+	TSubclassOf<UUserWidget> PauseMenuClass;
 };

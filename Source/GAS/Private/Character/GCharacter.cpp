@@ -111,17 +111,6 @@ void AGCharacter::OnWeaponOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 	}
 }
 
-void AGCharacter::OnLevelChanged(const FOnAttributeChangeData& Data)
-{
-	if (LevelUPEffectClass)
-	{
-		const FGameplayEffectContextHandle Handle = GetAbilitySystemComponent()->MakeEffectContext();
-		const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(LevelUPEffectClass, 1.f, Handle);
-		GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
-		AbilitySystemComp->OnUILevelChanged.Broadcast(Data.NewValue);
-	}
-}
-
 void AGCharacter::OnExperienceChanged(const FOnAttributeChangeData& Data)
 {
 	if (Data.NewValue >= GetAttributeSet()->GetMaxExperience())
@@ -131,4 +120,15 @@ void AGCharacter::OnExperienceChanged(const FOnAttributeChangeData& Data)
 		//@todo apply gameplay effect to do this
 	}
 	AbilitySystemComp->OnUIExperienceChanged.Broadcast(Data.NewValue);
+}
+
+void AGCharacter::OnLevelChanged(const FOnAttributeChangeData& Data)
+{
+	if (LevelUPEffectClass)
+	{
+		const FGameplayEffectContextHandle Handle = GetAbilitySystemComponent()->MakeEffectContext();
+		const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(LevelUPEffectClass, 1.f, Handle);
+		GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
+		AbilitySystemComp->OnUILevelChanged.Broadcast(Data.NewValue);
+	}
 }

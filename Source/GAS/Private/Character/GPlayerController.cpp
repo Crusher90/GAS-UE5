@@ -7,6 +7,9 @@
 #include "EnhancedInputComponent.h"
 #include "Character/GCharacter.h"
 #include "EnhancedInputSubsystems.h"
+#include "Blueprint/UserWidget.h"
+#include "Kismet/GameplayStatics.h"
+#include "UI/GHUD.h"
 
 void AGPlayerController::SetupInputComponent()
 {
@@ -22,6 +25,7 @@ void AGPlayerController::SetupInputComponent()
 		InputComp->BindAction(DecreaseSpeedAction, ETriggerEvent::Completed, this, &ThisClass::DecreaseSpeed);
 		InputComp->BindAction(DodgeAction, ETriggerEvent::Triggered, this, &ThisClass::Dodge);
 		InputComp->BindAction(UltimateAction, ETriggerEvent::Triggered, this, &ThisClass::Ultimate);
+		InputComp->BindAction(PauseMenuAction, ETriggerEvent::Triggered, this, &ThisClass::DisplayPauseMenu);
 	}
 }
 
@@ -110,4 +114,20 @@ void AGPlayerController::IncreaseSpeed()
 void AGPlayerController::DecreaseSpeed()
 {
 	MyCharacter->GetAbilitySystemComponent()->TryActivateAbilityByClass(*MyCharacter->StartupAbilities.Find(FName("StopSprintAbility")));
+}
+
+void AGPlayerController::DisplayPauseMenu()
+{
+	if (const AGHUD* Hud = Cast<AGHUD>(GetHUD()))
+	{
+		if (Hud->PauseMenu->GetVisibility() == ESlateVisibility::Hidden)
+		{
+			UGameplayStatics::SetGamePaused(this, true);
+			SetShowMouseCursor(true);
+			FInputModeUIOnly UIMode = FInputModeUIOnly();
+			UIMode.SetLockMouseToViewportBehavior(EMouseLockMode::LockInFullscreen);
+			SetInputMode(FInputModeUIOnly());
+			Hud->PauseMenu->SetVisibility(ESlateVisibility::Visible);
+		}
+	}
 }

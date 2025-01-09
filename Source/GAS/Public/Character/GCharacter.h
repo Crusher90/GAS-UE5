@@ -24,8 +24,6 @@ protected:
 	UFUNCTION()
 	void OnWeaponOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 		int OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-	
-	void OnLevelChanged(const FOnAttributeChangeData& Data);
 
 	void OnExperienceChanged(const FOnAttributeChangeData& Data);
 	
@@ -39,6 +37,8 @@ public:
 
 	virtual void Death() override;
 
+	virtual void OnLevelChanged(const FOnAttributeChangeData& Data);
+
 private:
 	UPROPERTY(VisibleAnywhere, Category="GAS|Properties|Camera")
 	USpringArmComponent* SpringArm;
@@ -49,10 +49,10 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category="GAS|Properties|GameplayEffect")
 	TSubclassOf<UGameplayEffect> DamageEffectClass;
 
-	UPROPERTY(EditDefaultsOnly, Category="GAS|Properties|GameplayEffect")
-	TSubclassOf<UGameplayEffect> LevelUPEffectClass;
-
 public:
 	UPROPERTY(VisibleAnywhere, Category="GAS|Properties|Weapon")
 	UBoxComponent* WeaponBoxCollision;
+
+	UPROPERTY(EditDefaultsOnly, Category="GAS|Ability")
+	TSubclassOf<UGameplayEffect> LevelUPEffectClass;
 };
