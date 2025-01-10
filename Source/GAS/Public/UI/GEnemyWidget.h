@@ -6,7 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "GEnemyWidget.generated.h"
 
-class UTextBlock;
+class UProgressBar;
 /**
  * 
  */
@@ -16,8 +16,8 @@ class GAS_API UGEnemyWidget : public UUserWidget
 	GENERATED_BODY()
 public:
 	UPROPERTY(meta = (BindWidget))
-	UTextBlock* TBHealth;
+	UProgressBar* PBHealth;
 
 	UPROPERTY(meta = (BindWidget))
-	UTextBlock* TBMana;
+	UProgressBar* PBMana;
 };

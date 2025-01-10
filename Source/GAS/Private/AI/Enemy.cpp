@@ -5,7 +5,7 @@
 
 #include "Character/GAttributeSet.h"
 #include "Components/GAbilitySystemComponent.h"
-#include "Components/TextBlock.h"
+#include "Components/ProgressBar.h"
 #include "Components/WidgetComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "UI/GEnemyWidget.h"
@@ -38,7 +38,7 @@ void AEnemy::BeginPlay()
 	}
 	if (HealthManaText)
 	{
-		HealthManaText->SetVisibility(false);
+		HealthManaText->SetVisibility(true);
 	}
 	GetAbilitySystemComponent()->GetGameplayAttributeValueChangeDelegate(GetAttributeSet()->GetHealthAttribute()).AddUObject(this, &ThisClass::OnEnemyHealthChanged);
 	GetAbilitySystemComponent()->GetGameplayAttributeValueChangeDelegate(GetAttributeSet()->GetManaAttribute()).AddUObject(this, &ThisClass::OnEnemyManaChanged);
@@ -77,7 +77,7 @@ void AEnemy::OnEnemyHealthChanged(const FOnAttributeChangeData& OnAttributeChang
 {
 	if (Widget)
 	{
-		Widget->TBHealth->SetText(FText::AsNumber(OnAttributeChangeData.NewValue));
+		Widget->PBHealth->SetPercent(OnAttributeChangeData.NewValue / GetAttributeSet()->GetMaxHealth());
 	}
 }
 
@@ -85,6 +85,6 @@ void AEnemy::OnEnemyManaChanged(const FOnAttributeChangeData& OnAttributeChangeD
 {
 	if (Widget)
 	{
-		Widget->TBMana->SetText(FText::AsNumber(OnAttributeChangeData.NewValue));
+		Widget->PBMana->SetPercent(OnAttributeChangeData.NewValue / GetAttributeSet()->GetMaxMana());
 	}
 }
