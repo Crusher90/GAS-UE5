@@ -52,6 +52,9 @@ private:
 	UInputAction* UltimateAction;
 
 	UPROPERTY(EditAnywhere, Category="GAS|Player|Inputs")
+	UInputAction* FillStaminaAction;
+
+	UPROPERTY(EditAnywhere, Category="GAS|Player|Inputs")
 	UInputAction* PauseMenuAction;
 
 protected:
@@ -65,6 +68,7 @@ protected:
 	void IncreaseSpeed();
 	void DecreaseSpeed();
 	void DisplayPauseMenu();
+	void FillStamina();
 	
 public:
 	UPROPERTY(VisibleAnywhere, Category="GAS|Player")

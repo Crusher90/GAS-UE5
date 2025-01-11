@@ -3,6 +3,9 @@
 
 #include "Components/GAbilitySystemComponent.h"
 
+#include "Character/GAttributeSet.h"
+#include "Character/GBaseCharacter.h"
+
 UGAbilitySystemComponent::UGAbilitySystemComponent()
 {
 	SetIsReplicated(true);
@@ -11,4 +14,19 @@ UGAbilitySystemComponent::UGAbilitySystemComponent()
 void UGAbilitySystemComponent::BeginPlay()
 {
 	Super::BeginPlay();
+	GetGameplayAttributeValueChangeDelegate(UGAttributeSet::GetHealthAttribute()).AddUObject(this, &ThisClass::HealthChanged);
 }
+
+void UGAbilitySystemComponent::HealthChanged(const FOnAttributeChangeData& Data) const
+{
+	if (GetNumericAttribute(UGAttributeSet::GetHealthAttribute()) == 0.f)
+	{
+		if (AGBaseCharacter* BaseChar = Cast<AGBaseCharacter>(GetAvatarActor()))
+		{
+			BaseChar->Death();
+		}
+	}
+	OnUIHealthChanged.Broadcast(GetNumericAttribute(UGAttributeSet::GetHealthAttribute()));
+}
+
+

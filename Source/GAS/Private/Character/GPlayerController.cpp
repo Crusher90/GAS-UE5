@@ -26,6 +26,7 @@ void AGPlayerController::SetupInputComponent()
 		InputComp->BindAction(DodgeAction, ETriggerEvent::Triggered, this, &ThisClass::Dodge);
 		InputComp->BindAction(UltimateAction, ETriggerEvent::Triggered, this, &ThisClass::Ultimate);
 		InputComp->BindAction(PauseMenuAction, ETriggerEvent::Triggered, this, &ThisClass::DisplayPauseMenu);
+		InputComp->BindAction(FillStaminaAction, ETriggerEvent::Triggered, this, &ThisClass::FillStamina);
 	}
 }
 
@@ -130,4 +131,9 @@ void AGPlayerController::DisplayPauseMenu()
 			Hud->PauseMenu->SetVisibility(ESlateVisibility::Visible);
 		}
 	}
+}
+
+void AGPlayerController::FillStamina()
+{
+	MyCharacter->GetAbilitySystemComponent()->TryActivateAbilityByClass(*MyCharacter->StartupAbilities.Find(FName("FillStaminaAbility")));
 }

@@ -25,21 +25,21 @@ public:
 	UTextBlock* TBExperience;
 
 	UPROPERTY(meta = (BindWidget))
-	UTextBlock* TBHealth;
+	UProgressBar* PBHealth;
 
 	UPROPERTY(meta = (BindWidget))
-	UTextBlock* TBStamina;
+	UProgressBar* PBStamina;
 
 	UPROPERTY(meta = (BindWidget))
-	UTextBlock* TBMana;
+	UProgressBar* PBMana;
 
 public:
 	virtual void NativeConstruct() override;
 	virtual bool Initialize() override;
 	
-	void HealthChanged(const FOnAttributeChangeData& Data);
 	void ManaChanged(const FOnAttributeChangeData& Data);
 	void StaminaChanged(const FOnAttributeChangeData& Data);
+	void HealthChanged(const float HealthToSet);
 	void OnLevelChanged(const float LevelToSet);
 	void OnExperienceChanged(const float ExperienceToSet);
 };

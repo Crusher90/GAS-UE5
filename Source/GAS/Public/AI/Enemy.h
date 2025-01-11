@@ -19,7 +19,7 @@ public:
 	AEnemy();
 
 protected:
-	void OnEnemyHealthChanged(const FOnAttributeChangeData& OnAttributeChangeData);
+	void OnEnemyHealthChanged(const float HealthToSet) const;
 
 	void OnEnemyManaChanged(const FOnAttributeChangeData& OnAttributeChangeData);
 	

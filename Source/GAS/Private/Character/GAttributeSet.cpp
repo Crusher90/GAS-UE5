@@ -25,13 +25,6 @@ void UGAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackD
 	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
 	{
 		SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth()));
-		if (GetHealth() == 0.f)
-		{
-			if (AGBaseCharacter* BaseChar = Cast<AGBaseCharacter>(Data.Target.GetAvatarActor()))
-			{
-				BaseChar->Death();
-			}
-		}
 	}
 	if (Data.EvaluatedData.Attribute == GetManaAttribute())
 	{

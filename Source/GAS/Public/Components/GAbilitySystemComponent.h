@@ -12,6 +12,7 @@
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnUILevelChangedSignature, float);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnUIExperienceChangedSignature, float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnUIHealthChangedSignature, float);
 
 UCLASS()
 class GAS_API UGAbilitySystemComponent : public UAbilitySystemComponent
@@ -22,7 +23,10 @@ public:
 
 	FOnUILevelChangedSignature OnUILevelChanged;
 	FOnUIExperienceChangedSignature OnUIExperienceChanged;
+	FOnUIHealthChangedSignature OnUIHealthChanged;
 
 protected:
 	virtual void BeginPlay() override;
+
+	void HealthChanged(const FOnAttributeChangeData& Data) const;
 };

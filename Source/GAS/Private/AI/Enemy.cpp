@@ -38,9 +38,9 @@ void AEnemy::BeginPlay()
 	}
 	if (HealthManaText)
 	{
-		HealthManaText->SetVisibility(true);
+		HealthManaText->SetVisibility(false);
 	}
-	GetAbilitySystemComponent()->GetGameplayAttributeValueChangeDelegate(GetAttributeSet()->GetHealthAttribute()).AddUObject(this, &ThisClass::OnEnemyHealthChanged);
+	AbilitySystemComp->OnUIHealthChanged.AddUObject(this, &ThisClass::OnEnemyHealthChanged);
 	GetAbilitySystemComponent()->GetGameplayAttributeValueChangeDelegate(GetAttributeSet()->GetManaAttribute()).AddUObject(this, &ThisClass::OnEnemyManaChanged);
 	Widget = Cast<UGEnemyWidget>(HealthManaText->GetWidget());
 	EnemyLocation = GetActorLocation();
@@ -73,11 +73,11 @@ void AEnemy::Death()
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("%s death"), *GetName()));
 }
 
-void AEnemy::OnEnemyHealthChanged(const FOnAttributeChangeData& OnAttributeChangeData)
+void AEnemy::OnEnemyHealthChanged(const float HealthToSet) const
 {
 	if (Widget)
 	{
-		Widget->PBHealth->SetPercent(OnAttributeChangeData.NewValue / GetAttributeSet()->GetMaxHealth());
+		Widget->PBHealth->SetPercent(HealthToSet / GetAttributeSet()->GetMaxHealth());
 	}
 }
 
