@@ -4,6 +4,7 @@
 #include "Abilities/GFillStaminaAbility.h"
 
 #include "AbilitySystemComponent.h"
+#include "Character/GAttributeSet.h"
 
 
 void UGFillStaminaAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
@@ -22,5 +23,9 @@ void UGFillStaminaAbility::PreActivate(const FGameplayAbilitySpecHandle Handle,
 	FOnGameplayAbilityEnded::FDelegate* OnGameplayAbilityEndedDelegate, const FGameplayEventData* TriggerEventData)
 {
 	Super::PreActivate(Handle, ActorInfo, ActivationInfo, OnGameplayAbilityEndedDelegate, TriggerEventData);
+	if (GetAbilitySystemComponentFromActorInfo()->GetNumericAttribute(UGAttributeSet::GetStaminaAttribute()) == GetAbilitySystemComponentFromActorInfo()->GetNumericAttribute(UGAttributeSet::GetMaxStaminaAttribute()))
+	{
+		return;
+	}
 	CommitAbility(Handle, ActorInfo, ActivationInfo);
 }
