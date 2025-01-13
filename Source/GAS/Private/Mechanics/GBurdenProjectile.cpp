@@ -43,7 +43,7 @@ void AGBurdenProjectile::OnProjectileOverlap(UPrimitiveComponent* OverlappedComp
 	// }
 	const TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes = {};
 	TArray<AActor*> OverlappedActors;
-	UKismetSystemLibrary::SphereOverlapActors(this, GetActorLocation(), 200.f, ObjectTypes,
+	UKismetSystemLibrary::SphereOverlapActors(this, GetActorLocation(), 800.f, ObjectTypes,
 		AEnemy::StaticClass(), {}, OverlappedActors);
 	for (const auto Actor : OverlappedActors)
 	{
