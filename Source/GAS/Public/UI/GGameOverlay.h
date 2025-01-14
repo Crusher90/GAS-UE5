@@ -42,4 +42,6 @@ public:
 	void HealthChanged(const float HealthToSet);
 	void OnLevelChanged(const float LevelToSet);
 	void OnExperienceChanged(const float ExperienceToSet);
+	void MaxStaminaChanged(const FOnAttributeChangeData& Data);
+	void MaxHealthChanged(const FOnAttributeChangeData& Data);
 };
