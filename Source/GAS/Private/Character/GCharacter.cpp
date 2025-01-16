@@ -91,6 +91,7 @@ void AGCharacter::Death()
 {
 	Super::Death();
 	// GetLocalViewingPlayerController()->DisableInput(GetLocalViewingPlayerController());
+	BPDied();
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("%s death"), *GetName()));
 }
 

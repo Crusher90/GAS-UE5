@@ -35,6 +35,9 @@ public:
 
 	virtual void PossessedBy(AController* NewController) override;
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "GAS|Properties|Func")
+	void BPDied();
+	
 	virtual void Death() override;
 
 	virtual void OnLevelChanged(const FOnAttributeChangeData& Data);
