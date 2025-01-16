@@ -6,6 +6,7 @@
 #include "GameFramework/HUD.h"
 #include "GHUD.generated.h"
 
+class UGCAWidget;
 /**
  * 
  */
@@ -20,15 +21,9 @@ public:
 	UPROPERTY(VisibleAnywhere, Category="GAS|UI|Widgets")
 	UUserWidget* GUserWidget;
 
-	UPROPERTY(VisibleAnywhere, Category="GAS|UI|Widgets")
-	UUserWidget* GameOverlay;
-
-	UPROPERTY(VisibleAnywhere, Category="GAS|UI|Widgets")
-	UUserWidget* PauseMenu;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="GAS|UI|Widgets")
+	UGCAWidget* GMainWidgetStack;
 	
-	UPROPERTY(EditAnywhere, Category="GAS|UI|Widgets")
-	TSubclassOf<UUserWidget> GameOverlayClass;
-
-	UPROPERTY(EditAnywhere, Category="GAS|UI|Widgets")
-	TSubclassOf<UUserWidget> PauseMenuClass;
+	UPROPERTY(EditDefaultsOnly, Category="GAS|UI|Widgets")
+	TSubclassOf<UUserWidget> GMainWidgetClass;
 };

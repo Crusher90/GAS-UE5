@@ -3,8 +3,8 @@
 
 #include "UI/GHUD.h"
 
-#include "RayTracingInstanceBufferUtil.h"
 #include "Blueprint/UserWidget.h"
+#include "UI/GCAWidget.h"
 #include "UI/GUserWidget.h"
 
 void AGHUD::BeginPlay()
@@ -15,15 +15,10 @@ void AGHUD::BeginPlay()
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, FString::Printf(TEXT("main user widget is %s"), *GUserWidget->GetName()));
 	}
-	GameOverlay = CreateWidget(GetOwningPlayerController(), GameOverlayClass);
-	if (GameOverlay)
+	GMainWidgetStack = Cast<UGCAWidget>(CreateWidget(GetOwningPlayerController(), GMainWidgetClass));
+	if (GMainWidgetStack)
 	{
-		GameOverlay->AddToViewport();
-	}
-	PauseMenu = CreateWidget(GetOwningPlayerController(), PauseMenuClass);
-	if (PauseMenuClass)
-	{
-		PauseMenu->AddToViewport();
-		PauseMenu->SetVisibility(ESlateVisibility::Hidden);
+		GMainWidgetStack->AddToViewport();
+		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, FString::Printf(TEXT("main user Stack is %s"), *GUserWidget->GetName()));
 	}
 }
