@@ -4,19 +4,22 @@
 
 #include "CoreMinimal.h"
 #include "Character/GBaseCharacter.h"
+#include "Interface/GEnemyInterface.h"
 #include "Enemy.generated.h"
 
 class UGEnemyWidget;
 class UWidgetComponent;
 
 UCLASS()
-class GAS_API AEnemy : public AGBaseCharacter
+class GAS_API AEnemy : public AGBaseCharacter, public IGEnemyInterface
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this character's properties
 	AEnemy();
+
+	FVector GetEnemyStartLocation_Implementation();
 
 protected:
 	void OnEnemyHealthChanged(const float HealthToSet) const;

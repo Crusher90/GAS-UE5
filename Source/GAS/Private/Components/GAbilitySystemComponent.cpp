@@ -28,5 +28,3 @@ void UGAbilitySystemComponent::HealthChanged(const FOnAttributeChangeData& Data)
 	}
 	OnUIHealthChanged.Broadcast(GetNumericAttribute(UGAttributeSet::GetHealthAttribute()));
 }
-
-

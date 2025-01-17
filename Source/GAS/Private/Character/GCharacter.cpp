@@ -133,3 +133,13 @@ void AGCharacter::OnLevelChanged(const FOnAttributeChangeData& Data)
 		AbilitySystemComp->OnUILevelChanged.Broadcast(Data.NewValue);
 	}
 }
+
+FName AGCharacter::GetPlayerMontageName_Implementation()
+{
+	return MontageSectionName;
+}
+
+void AGCharacter::SetPlayerMontageName_Implementation(FName MontageName)
+{
+	MontageSectionName = MontageName;
+}

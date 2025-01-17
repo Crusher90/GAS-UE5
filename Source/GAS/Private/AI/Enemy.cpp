@@ -28,6 +28,11 @@ AEnemy::AEnemy()
 	HealthManaText->SetupAttachment(GetMesh());
 }
 
+FVector AEnemy::GetEnemyStartLocation_Implementation()
+{
+	return EnemyLocation;
+}
+
 // Called when the game starts or when spawned
 void AEnemy::BeginPlay()
 {

@@ -42,6 +42,10 @@ public:
 
 	virtual void OnLevelChanged(const FOnAttributeChangeData& Data);
 
+	virtual FName GetPlayerMontageName_Implementation() override;
+
+	virtual void SetPlayerMontageName_Implementation(FName MontageName) override;
+
 private:
 	UPROPERTY(VisibleAnywhere, Category="GAS|Properties|Camera")
 	USpringArmComponent* SpringArm;
@@ -58,4 +62,7 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category="GAS|Ability")
 	TSubclassOf<UGameplayEffect> LevelUPEffectClass;
+
+	UPROPERTY(EditDefaultsOnly, Category="GAS|Ability")
+	FName MontageSectionName = FName("Attack1");
 };

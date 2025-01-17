@@ -4,11 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
-#include "GPlayerInterface.generated.h"
+#include "GEnemyInterface.generated.h"
 
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
-class UGPlayerInterface : public UInterface
+class UGEnemyInterface : public UInterface
 {
 	GENERATED_BODY()
 };
@@ -16,15 +16,12 @@ class UGPlayerInterface : public UInterface
 /**
  * 
  */
-class GAS_API IGPlayerInterface
+class GAS_API IGEnemyInterface
 {
 	GENERATED_BODY()
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	FName GetPlayerMontageName();
-
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void SetPlayerMontageName(FName MontageName);
+	FVector GetEnemyStartLocation();
 };
