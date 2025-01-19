@@ -35,4 +35,8 @@ public:
 
 	UPROPERTY(VisibleAnywhere, Category="GAS|Properties|Weapon")
 	UBoxComponent* RWeaponBoxCollision;
+
+	virtual void EnableWeaponCollision() override;
+
+	virtual void DisableWeaponCollision() override;
 };

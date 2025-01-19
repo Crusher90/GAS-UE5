@@ -27,4 +27,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void SetPlayerMontageName(FName MontageName);
+	
+	virtual void EnableWeaponCollision() = 0;
+	
+	virtual void DisableWeaponCollision() = 0;
 };

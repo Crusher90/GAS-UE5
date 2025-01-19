@@ -18,6 +18,4 @@ class GAS_API UGCAWidget : public UCommonActivatableWidget
 public:
 	UPROPERTY(meta = (BindWidget), BlueprintReadOnly)
 	UCommonActivatableWidgetStack* CAS;
-
-	void car();
 };

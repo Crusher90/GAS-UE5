@@ -12,8 +12,6 @@ void UGDodgeAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
                                      const FGameplayEventData* TriggerEventData)
 {
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
-	// GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString("ActivateAbilityDodgeAbility"));
-
 	if(ACharacter* Character = Cast<ACharacter>(GetAvatarActorFromActorInfo()))
 	{
 		const FVector LaunchVelocity = FVector(Character->GetVelocity().X, Character->GetVelocity().Y, 0.f);
@@ -26,6 +24,5 @@ void UGDodgeAbility::PreActivate(const FGameplayAbilitySpecHandle Handle, const 
 	FOnGameplayAbilityEnded::FDelegate* OnGameplayAbilityEndedDelegate, const FGameplayEventData* TriggerEventData)
 {
 	Super::PreActivate(Handle, ActorInfo, ActivationInfo, OnGameplayAbilityEndedDelegate, TriggerEventData);
-	// GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString("ActivateAbilityPreDodgeAbility"));
 	CommitAbility(Handle, ActorInfo, ActivationInfo);
 }

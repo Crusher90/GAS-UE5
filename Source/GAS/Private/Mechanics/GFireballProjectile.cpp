@@ -43,7 +43,6 @@ void AGFireballProjectile::SpawnProjectile(const FTransform& SpawnTransform) con
 void AGFireballProjectile::Destroyed()
 {
 	Super::Destroyed();
-	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, "FireballProjectileDestroyed");
 	UGameplayStatics::SpawnEmitterAtLocation(this, DestroyParticle, GetActorLocation(), GetActorRotation());
 	SpawnProjectile(GetActorTransform());
 }

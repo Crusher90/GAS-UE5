@@ -30,4 +30,10 @@ private:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Animation|Attributes", meta = (AllowPrivateAccess = "true"))
 	bool bIsAccelerating;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Animation|Attributes", meta = (AllowPrivateAccess = "true"))
+	float GPitch;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Animation|Attributes", meta = (AllowPrivateAccess = "true"))
+	float GYaw;
 };

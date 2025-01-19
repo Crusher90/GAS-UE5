@@ -4,7 +4,6 @@
 #include "AI/GCloseRangedEnemy.h"
 
 #include "AbilitySystemComponent.h"
-#include "Character/GAttributeSet.h"
 #include "Components/BoxComponent.h"
 
 
@@ -73,4 +72,16 @@ void AGCloseRangedEnemy::BeginPlay()
 	Super::BeginPlay();
 	LWeaponBoxCollision->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::WeaponLOverlap);
 	RWeaponBoxCollision->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::WeaponROverlap);
+}
+
+void AGCloseRangedEnemy::EnableWeaponCollision()
+{
+	LWeaponBoxCollision->SetCollisionEnabled(ECollisionEnabled::Type::QueryOnly);
+	RWeaponBoxCollision->SetCollisionEnabled(ECollisionEnabled::Type::QueryOnly);
+}
+
+void AGCloseRangedEnemy::DisableWeaponCollision()
+{
+	LWeaponBoxCollision->SetCollisionEnabled(ECollisionEnabled::Type::NoCollision);
+	RWeaponBoxCollision->SetCollisionEnabled(ECollisionEnabled::Type::NoCollision);
 }

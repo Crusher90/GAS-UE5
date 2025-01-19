@@ -46,6 +46,10 @@ public:
 
 	virtual void SetPlayerMontageName_Implementation(FName MontageName) override;
 
+	virtual void EnableWeaponCollision() override;
+
+	virtual void DisableWeaponCollision() override;
+
 private:
 	UPROPERTY(VisibleAnywhere, Category="GAS|Properties|Camera")
 	USpringArmComponent* SpringArm;

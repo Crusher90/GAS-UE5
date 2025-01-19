@@ -24,4 +24,8 @@ class GAS_API IGEnemyInterface
 public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	FVector GetEnemyStartLocation();
+	
+	virtual void EnableWeaponCollision() = 0;
+	
+	virtual void DisableWeaponCollision() = 0;
 };

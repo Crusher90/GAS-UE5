@@ -5,6 +5,7 @@
 
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/KismetMathLibrary.h"
 
 void UGAnimInstance::NativeInitializeAnimation()
 {
@@ -23,4 +24,8 @@ void UGAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 
 	bIsInAir = MyCharacter->GetCharacterMovement()->IsFalling();
 	bIsAccelerating = MyCharacter->GetCharacterMovement()->GetCurrentAcceleration().Size() > 0.f ? true : false;
+
+	const FRotator DeltaRot = UKismetMathLibrary::NormalizedDeltaRotator(MyCharacter->GetBaseAimRotation(), MyCharacter->GetActorRotation());
+	GPitch = DeltaRot.Pitch;
+	GYaw = DeltaRot.Yaw;
 }

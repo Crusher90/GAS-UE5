@@ -90,9 +90,7 @@ void AGCharacter::PossessedBy(AController* NewController)
 void AGCharacter::Death()
 {
 	Super::Death();
-	// GetLocalViewingPlayerController()->DisableInput(GetLocalViewingPlayerController());
 	BPDied();
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("%s death"), *GetName()));
 }
 
 void AGCharacter::OnWeaponOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
@@ -118,7 +116,6 @@ void AGCharacter::OnExperienceChanged(const FOnAttributeChangeData& Data)
 	{
 		GetAttributeSet()->SetExperience(0.f);
 		GetAttributeSet()->SetLevel(AttributeSet->GetLevel() + 1);
-		//@todo apply gameplay effect to do this
 	}
 	AbilitySystemComp->OnUIExperienceChanged.Broadcast(Data.NewValue);
 }
@@ -142,4 +139,14 @@ FName AGCharacter::GetPlayerMontageName_Implementation()
 void AGCharacter::SetPlayerMontageName_Implementation(FName MontageName)
 {
 	MontageSectionName = MontageName;
+}
+
+void AGCharacter::EnableWeaponCollision()
+{
+	WeaponBoxCollision->SetCollisionEnabled(ECollisionEnabled::Type::QueryOnly);
+}
+
+void AGCharacter::DisableWeaponCollision()
+{
+	WeaponBoxCollision->SetCollisionEnabled(ECollisionEnabled::Type::NoCollision);
 }

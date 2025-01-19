@@ -23,7 +23,8 @@ void UGFillStaminaAbility::PreActivate(const FGameplayAbilitySpecHandle Handle,
 	FOnGameplayAbilityEnded::FDelegate* OnGameplayAbilityEndedDelegate, const FGameplayEventData* TriggerEventData)
 {
 	Super::PreActivate(Handle, ActorInfo, ActivationInfo, OnGameplayAbilityEndedDelegate, TriggerEventData);
-	if (GetAbilitySystemComponentFromActorInfo()->GetNumericAttribute(UGAttributeSet::GetStaminaAttribute()) == GetAbilitySystemComponentFromActorInfo()->GetNumericAttribute(UGAttributeSet::GetMaxStaminaAttribute()))
+	if (GetAbilitySystemComponentFromActorInfo()->GetNumericAttribute(UGAttributeSet::GetStaminaAttribute()) ==
+		GetAbilitySystemComponentFromActorInfo()->GetNumericAttribute(UGAttributeSet::GetMaxStaminaAttribute()))
 	{
 		return;
 	}

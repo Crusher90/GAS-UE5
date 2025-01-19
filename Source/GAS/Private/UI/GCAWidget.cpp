@@ -2,8 +2,3 @@
 
 
 #include "UI/GCAWidget.h"
-
-
-void UGCAWidget::car()
-{
-}

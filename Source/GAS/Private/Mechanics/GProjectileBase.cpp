@@ -31,7 +31,6 @@ AGProjectileBase::AGProjectileBase()
 	ProjectileMovement->InitialSpeed = 2000.f;
 	ProjectileMovement->MaxSpeed = 4000.f;
 	ProjectileMovement->ProjectileGravityScale = 1.f;
-	ProjectileMovement->SetIsReplicated(true);
 
 	NiagaraComp = CreateDefaultSubobject<UNiagaraComponent>(TEXT("Niagara"));
 	NiagaraComp->SetupAttachment(GetRootComponent());

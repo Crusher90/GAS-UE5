@@ -50,7 +50,10 @@ private:
 	UPROPERTY(EditAnywhere, Category="GAS|Bonfire|Properties")
 	TSubclassOf<UGameplayEffect> BonfireDamageEffect;
 
+	UPROPERTY()
 	FActiveGameplayEffectHandle ActiveBonfireHealEffect;
+
+	UPROPERTY()
 	FActiveGameplayEffectHandle ActiveBonfireDamageEffect;
 
 protected:

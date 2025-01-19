@@ -37,10 +37,6 @@ FVector AEnemy::GetEnemyStartLocation_Implementation()
 void AEnemy::BeginPlay()
 {
 	Super::BeginPlay();
-	if (AttributeSet)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("attribute set is %s"), *AttributeSet->GetName()));
-	}
 	if (HealthManaText)
 	{
 		HealthManaText->SetVisibility(false);
@@ -73,9 +69,15 @@ FRotator AEnemy::GetViewRotation() const
 
 void AEnemy::Death()
 {
-	// GetController()->StopMovement();
 	Super::Death();
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("%s death"), *GetName()));
+}
+
+void AEnemy::EnableWeaponCollision()
+{
+}
+
+void AEnemy::DisableWeaponCollision()
+{
 }
 
 void AEnemy::OnEnemyHealthChanged(const float HealthToSet) const
@@ -86,7 +88,7 @@ void AEnemy::OnEnemyHealthChanged(const float HealthToSet) const
 	}
 }
 
-void AEnemy::OnEnemyManaChanged(const FOnAttributeChangeData& OnAttributeChangeData)
+void AEnemy::OnEnemyManaChanged(const FOnAttributeChangeData& OnAttributeChangeData) const
 {
 	if (Widget)
 	{

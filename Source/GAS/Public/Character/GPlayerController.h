@@ -67,7 +67,6 @@ protected:
 	void Ultimate();		// consume mana
 	void IncreaseSpeed();
 	void DecreaseSpeed();
-	void DisplayPauseMenu();
 	void FillStamina();
 	
 public:

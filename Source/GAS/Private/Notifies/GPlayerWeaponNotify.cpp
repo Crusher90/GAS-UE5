@@ -3,16 +3,15 @@
 
 #include "Notifies/GPlayerWeaponNotify.h"
 
-#include "Character/GCharacter.h"
-#include "Components/BoxComponent.h"
+#include "Interface/GPlayerInterface.h"
 
 void UGPlayerWeaponNotify::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation,
                                        float TotalDuration, const FAnimNotifyEventReference& EventReference)
 {
 	Super::NotifyBegin(MeshComp, Animation, TotalDuration, EventReference);
-	if (const AGCharacter* Player = Cast<AGCharacter>(MeshComp->GetOwner()))
+	if (IGPlayerInterface* PlayerInterface = Cast<IGPlayerInterface>(MeshComp->GetOwner()))
 	{
-		Player->WeaponBoxCollision->SetCollisionEnabled(ECollisionEnabled::Type::QueryOnly);
+		PlayerInterface->EnableWeaponCollision();
 	}
 }
 
@@ -20,8 +19,8 @@ void UGPlayerWeaponNotify::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequ
 	const FAnimNotifyEventReference& EventReference)
 {
 	Super::NotifyEnd(MeshComp, Animation, EventReference);
-	if (const AGCharacter* Player = Cast<AGCharacter>(MeshComp->GetOwner()))
+	if (IGPlayerInterface* PlayerInterface = Cast<IGPlayerInterface>(MeshComp->GetOwner()))
 	{
-		Player->WeaponBoxCollision->SetCollisionEnabled(ECollisionEnabled::Type::NoCollision);
+		PlayerInterface->DisableWeaponCollision();
 	}
 }

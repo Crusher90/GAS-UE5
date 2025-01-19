@@ -3,17 +3,16 @@
 
 #include "Notifies/GEnemyWeaponNotify.h"
 
-#include "AI/GCloseRangedEnemy.h"
-#include "Components/BoxComponent.h"
+#include "Interface/GEnemyInterface.h"
+
 
 void UGEnemyWeaponNotify::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation,
                                       float TotalDuration, const FAnimNotifyEventReference& EventReference)
 {
 	Super::NotifyBegin(MeshComp, Animation, TotalDuration, EventReference);
-	if (const AGCloseRangedEnemy* Enemy = Cast<AGCloseRangedEnemy>(MeshComp->GetOwner()))
+	if (IGEnemyInterface* EnemyInterface = Cast<IGEnemyInterface>(MeshComp->GetOwner()))
 	{
-		Enemy->LWeaponBoxCollision->SetCollisionEnabled(ECollisionEnabled::Type::QueryOnly);
-		Enemy->RWeaponBoxCollision->SetCollisionEnabled(ECollisionEnabled::Type::QueryOnly);
+		EnemyInterface->EnableWeaponCollision();
 	}
 }
 
@@ -21,9 +20,8 @@ void UGEnemyWeaponNotify::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSeque
 	const FAnimNotifyEventReference& EventReference)
 {
 	Super::NotifyEnd(MeshComp, Animation, EventReference);
-	if (const AGCloseRangedEnemy* Enemy = Cast<AGCloseRangedEnemy>(MeshComp->GetOwner()))
+	if (IGEnemyInterface* EnemyInterface = Cast<IGEnemyInterface>(MeshComp->GetOwner()))
 	{
-		Enemy->LWeaponBoxCollision->SetCollisionEnabled(ECollisionEnabled::Type::NoCollision);
-		Enemy->RWeaponBoxCollision->SetCollisionEnabled(ECollisionEnabled::Type::NoCollision);
+		EnemyInterface->DisableWeaponCollision();
 	}
 }

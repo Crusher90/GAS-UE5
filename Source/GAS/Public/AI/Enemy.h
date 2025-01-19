@@ -24,9 +24,8 @@ public:
 protected:
 	void OnEnemyHealthChanged(const float HealthToSet) const;
 
-	void OnEnemyManaChanged(const FOnAttributeChangeData& OnAttributeChangeData);
+	void OnEnemyManaChanged(const FOnAttributeChangeData& OnAttributeChangeData) const;
 	
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:
@@ -47,4 +46,8 @@ public:
 
 	UPROPERTY(VisibleAnywhere, Category="GAS|HealthManaWidget")
 	const UGEnemyWidget* Widget;
+
+	virtual void EnableWeaponCollision() override;
+	
+	virtual void DisableWeaponCollision() override;
 };

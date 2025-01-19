@@ -27,20 +27,12 @@ AGBurdenProjectile::AGBurdenProjectile()
 void AGBurdenProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, FString::Printf(TEXT("instigator is %s"), *GetInstigator()->GetName()));
 	ProjectileMovement->HomingTargetComponent = GetInstigator()->GetRootComponent();
 }
 
 void AGBurdenProjectile::OnProjectileOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	// GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Black, FString::Printf(TEXT("OverlappedHits: %d"), Hits));
-	// Super::OnProjectileOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
-	// CollisionComp->GetOverlappingActors(OverlappedActors, AEnemy::StaticClass());
-	// for (AActor* OverlappedActor : OverlappedActors)
-	// {
-	// 		
-	// }
 	const TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes = {};
 	TArray<AActor*> OverlappedActors;
 	UKismetSystemLibrary::SphereOverlapActors(this, GetActorLocation(), 800.f, ObjectTypes,

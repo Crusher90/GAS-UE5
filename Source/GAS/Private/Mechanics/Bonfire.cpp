@@ -8,8 +8,6 @@
 #include "Components/BoxComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "NiagaraComponent.h"
-#include "Character/GAttributeSet.h"
-#include "Character/GCharacter.h"
 #include "Components/AudioComponent.h"
 
 // Sets default values

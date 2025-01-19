@@ -25,7 +25,7 @@ protected:
 		const FGameplayEventData* TriggerEventData = nullptr) override;
 
 	UFUNCTION(BlueprintCallable, Category = "GAS|Events")
-	void SpawnProjectile() const;
+	void SpawnProjectile(const USkeletalMeshComponent* MeshComp) const;
 
 	UPROPERTY(EditDefaultsOnly, Category = "GAS|Events")
 	TSubclassOf<AActor> SpawnProjectileClass;
