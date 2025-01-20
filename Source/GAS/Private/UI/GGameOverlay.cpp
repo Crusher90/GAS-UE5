@@ -17,7 +17,7 @@ void UGGameOverlay::NativeConstruct()
 		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetStaminaAttribute()).AddUObject(this, &ThisClass::StaminaChanged);
 		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetMaxStaminaAttribute()).AddUObject(this, &ThisClass::MaxStaminaChanged);
 		ASComp->GetGameplayAttributeValueChangeDelegate(ASet->GetMaxHealthAttribute()).AddUObject(this, &ThisClass::MaxHealthChanged);
-		ASComp->OnUIHealthChanged.AddUObject(this, &UGGameOverlay::HealthChanged);
+		ASComp->OnUIHealthChanged.AddUObject(this, &ThisClass::HealthChanged);
 		ASComp->OnUILevelChanged.AddUObject(this, &ThisClass::OnLevelChanged);
 		ASComp->OnUIExperienceChanged.AddUObject(this, &ThisClass::OnExperienceChanged);
 	}
