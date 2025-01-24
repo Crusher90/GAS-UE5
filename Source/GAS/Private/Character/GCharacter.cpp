@@ -103,7 +103,6 @@ void AGCharacter::OnWeaponOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 			const FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
 			const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(DamageEffectClass, 1.f, ContextHandle);
 			GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), AbilitySystemInterface->GetAbilitySystemComponent());
-			// const FGameplayEffectContextHandle ContextHandle2 = GetAbilitySystemComponent()->MakeEffectContext();
 			const FGameplayEffectSpecHandle SpecHandle2 = GetAbilitySystemComponent()->MakeOutgoingSpec(OwnerEffectClass, 1.f, ContextHandle);
 			GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle2.Data.Get());
 		}
