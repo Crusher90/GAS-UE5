@@ -9,7 +9,6 @@
 // Sets default values
 AGBaseCharacter::AGBaseCharacter(): AbilitySystemComp(nullptr)
 {
-	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
 	GetMesh()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
@@ -39,8 +38,8 @@ void AGBaseCharacter::GiveStartupAbilities()
 void AGBaseCharacter::InitDefaultAttributes() const
 {
 	const FGameplayEffectContextHandle ContextHandle = AbilitySystemComp->MakeEffectContext();
-	const FGameplayEffectSpecHandle SpecHandle = AbilitySystemComp->MakeOutgoingSpec(InitAttributeGameplayEffect, 1.f,
-		ContextHandle);
+	const FGameplayEffectSpecHandle SpecHandle = AbilitySystemComp->MakeOutgoingSpec(InitAttributeGameplayEffect,
+		StartupEffectLevel,ContextHandle);
 	AbilitySystemComp->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
 }
 

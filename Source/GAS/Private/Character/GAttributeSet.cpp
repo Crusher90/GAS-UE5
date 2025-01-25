@@ -5,7 +5,6 @@
 
 #include "Net/UnrealNetwork.h"
 #include "GameplayEffectExtension.h"
-#include "Character/GBaseCharacter.h"
 
 void UGAttributeSet::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
 {

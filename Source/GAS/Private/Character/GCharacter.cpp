@@ -114,7 +114,8 @@ void AGCharacter::OnExperienceChanged(const FOnAttributeChangeData& Data)
 	if (Data.NewValue >= GetAttributeSet()->GetMaxExperience())
 	{
 		GetAttributeSet()->SetExperience(0.f);
-		GetAttributeSet()->SetLevel(AttributeSet->GetLevel() + 1);
+		StartupEffectLevel++;
+		GetAttributeSet()->SetLevel(StartupEffectLevel);
 	}
 	AbilitySystemComp->OnUIExperienceChanged.Broadcast(Data.NewValue);
 }
@@ -124,7 +125,8 @@ void AGCharacter::OnLevelChanged(const FOnAttributeChangeData& Data)
 	if (LevelUPEffectClass)
 	{
 		const FGameplayEffectContextHandle Handle = GetAbilitySystemComponent()->MakeEffectContext();
-		const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(LevelUPEffectClass, 1.f, Handle);
+		const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(LevelUPEffectClass,
+			StartupEffectLevel, Handle);
 		GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
 		AbilitySystemComp->OnUILevelChanged.Broadcast(Data.NewValue);
 	}
