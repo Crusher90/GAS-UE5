@@ -3,6 +3,9 @@
 
 #include "Mechanics/GBurdenProjectile.h"
 
+#include <execution>
+
+#include "AbilitySystemComponent.h"
 #include "AI/Enemy.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
@@ -38,6 +41,14 @@ void AGBurdenProjectile::OnProjectileOverlap(UPrimitiveComponent* OverlappedComp
 		AEnemy::StaticClass(), {}, OverlappedActors);
 	for (const auto Actor : OverlappedActors)
 	{
-		Super::OnProjectileOverlap(OverlappedComponent, Actor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
+		if (const IAbilitySystemInterface* AbilitySystemInterface = Cast<IAbilitySystemInterface>(GetOwner()))
+		{
+			const IAbilitySystemInterface* AbilitySystemInterfaceTarget = Cast<IAbilitySystemInterface>(Actor);
+			const FGameplayEffectContextHandle ContextHandle = AbilitySystemInterface->GetAbilitySystemComponent()->MakeEffectContext();
+			const FGameplayEffectSpecHandle SpecHandle = AbilitySystemInterface->GetAbilitySystemComponent()->MakeOutgoingSpec(OverlapEffect, 1.f, ContextHandle);
+			AbilitySystemInterface->GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), AbilitySystemInterfaceTarget->GetAbilitySystemComponent());
+			GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StartCameraShake(CameraShake);
+		}
 	}
+	Destroy();
 }

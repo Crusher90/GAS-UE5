@@ -51,13 +51,6 @@ void AGProjectileBase::OnProjectileOverlap(UPrimitiveComponent* OverlappedCompon
 {
 	if (OtherActor)
 	{
-		// if (const IAbilitySystemInterface* AbilitySystemInterface = Cast<IAbilitySystemInterface>(OtherActor))
-		// {
-		// 	const FGameplayEffectContextHandle ContextHandle = AbilitySystemInterface->GetAbilitySystemComponent()->MakeEffectContext();
-		// 	const FGameplayEffectSpecHandle SpecHandle = AbilitySystemInterface->GetAbilitySystemComponent()->MakeOutgoingSpec(OverlapEffect, 1.f, ContextHandle);
-		// 	AbilitySystemInterface->GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
-		// 	GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StartCameraShake(CameraShake);
-		// }
 		if (const IAbilitySystemInterface* AbilitySystemInterface = Cast<IAbilitySystemInterface>(GetOwner()))
 		{
 			const IAbilitySystemInterface* AbilitySystemInterfaceTarget = Cast<IAbilitySystemInterface>(OtherActor);
@@ -67,4 +60,5 @@ void AGProjectileBase::OnProjectileOverlap(UPrimitiveComponent* OverlappedCompon
 			GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StartCameraShake(CameraShake);
 		}
 	}
+	Destroy();
 }
