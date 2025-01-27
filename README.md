@@ -1,2 +1,2 @@
-# TempGAS-UE5
+# GAS-UE5
 GameplayAbilitySystem-UE5
